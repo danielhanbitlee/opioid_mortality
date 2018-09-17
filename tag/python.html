@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Opioid Mortality Rate</title>
+        <title>Opioid Mortality Rate - python</title>
         <link rel="stylesheet" href="https://danielhanbitlee.github.io/opioid_mortality/theme/css/main.css" />
         <link href="https://danielhanbitlee.github.io/opioid_mortality/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Opioid Mortality Rate Atom Feed" />
 
@@ -13,7 +13,7 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="https://danielhanbitlee.github.io/opioid_mortality/">Predicing US County Level Opioid Overdose Mortality Rate </a></h1>
+                <h1><a href="https://danielhanbitlee.github.io/opioid_mortality/">Opioid Mortality Rate </a></h1>
                 <nav><ul>
                     <li><a href="https://danielhanbitlee.github.io/opioid_mortality/category/posts.html">posts</a></li>
                 </ul></nav>
@@ -1008,7 +1008,59 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Predicting-US-County-Level-Opioid-Overdose-Mortality-Rate">Predicting US County Level Opioid Overdose Mortality Rate<a class="anchor-link" href="#Predicting-US-County-Level-Opioid-Overdose-Mortality-Rate">&#182;</a></h1><h2 id="What-is-the-opioid-epidemic?">What is the opioid epidemic?<a class="anchor-link" href="#What-is-the-opioid-epidemic?">&#182;</a></h2><p>Wikipedia defines the opioid epidemic as the following:</p>
+<h1 id="Outline">Outline<a class="anchor-link" href="#Outline">&#182;</a></h1><ol>
+    <li>Presentation Slides</li>
+    <li>Summary</li>
+    <li>What is the opioid epidemic?
+        <ol type="a">
+            <li>Annual Cause of Death by Opioid Overdose</li>
+            <li>Number of Deaths by Demographic Factors 1999 - 2016</li>
+        </ol>
+    </li>
+    <li>Reading Between the Numbers - Why Should We Care?</li>
+    <li>USA by Opioid Overdose Mortality Rate, 2016
+        <ol type="a">
+            <li>Top Ten Counties with Highest Mortality Rate Caused by Opioid Overdose in 2016</li>
+        </ol>
+    </li>
+    <li>Why Predict Opioid Overdose Mortality Rate?</li>
+    <li>Datasets</li>
+    <li>Variables</li>
+    <li>Exploratory Data Analysis
+        <ol type="a">
+            <li>Distribution of County Level Opioid Overdose Mortality Rate</li>
+            <li>Distribution of County Level Opioid Overdose Mortality Rate (Opioid Overdose Mortality Rate Greater Than Zero)</li>
+            <li>Violin Plots of All Variables Except Opioid Overdose Mortality Rate</li>
+            <li>Correlation Heat Map of All the Variables</li>
+            <li>Top 12 Correlation Magnitude Variable Pairs</li>
+            <li>Pearson's Correlation Between Crude Mortality Rate and All Other Variables</li>
+            <li>Conclusion From Exploratory Data Analysis</li>
+        </ol>
+    </li>
+    <li>Predictions
+        <ol type="a">
+            <li>Bootstrap RMSE Distributions for All Methods</li>
+            <li>Boxplot of Bootstrap RMSE Distributions for All Methods</li>
+            <li>Predicted vs Actual Opioid Overdose Mortality Rate</li>
+            <li>Feature Importances</li>
+        </ol>
+    </li>
+    <li>A Closer Look at the County Level Population Distribution
+        <ol type="a">
+            <li>Boxplot of Bootstrap RMSE Distributions for All Methods (Population >= 18,646)</li>
+            <li>Predicted vs Actual Opioid Overdose Mortality Rate (Population >= 18,646)</li>
+            <li>Feature Importances (Population >= 18,646)</li>
+        </ol>
+    </li>
+    <li>Conclusion from Prediction Analysis</li>
+    <li>Further Research</li>
+    <li>References</li>
+    <li>Links</li>
+    <li>Special Thanks</li>
+</ol><h1 id="Presentation-Slides">Presentation Slides<a class="anchor-link" href="#Presentation-Slides">&#182;</a></h1><p><a href="https://danielhanbitlee.github.io/Springboard/capstone_project/#/">Full Screen Presentation Slides</a></p>
+<embed src="https://danielhanbitlee.github.io/Springboard/capstone_project/#/" style="width:650px; height: 478.94736842105266px;">
+
+<h1 id="What-is-the-opioid-epidemic?">What is the opioid epidemic?<a class="anchor-link" href="#What-is-the-opioid-epidemic?">&#182;</a></h1><p>Wikipedia defines the opioid epidemic as the following:</p>
 <blockquote><p>The opioid epidemic or opioid crisis is the rapid increase in the use of prescription and non-prescription opioid drugs  in the United States and Canada beginning in the late 1990s and continuing throughout the next two decades. Opioids are a diverse class of moderately strong painkillers, including oxycodone (commonly sold under the trade names OxyContin and Percocet), hydrocodone (Vicodin), and a very strong painkiller, fentanyl, which is synthesized to resemble other opiates such as opium-derived morphine and heroin.</p>
 </blockquote>
 <p><em>Source: <a href="https://en.wikipedia.org/wiki/Opioid_epidemic">https://en.wikipedia.org/wiki/Opioid_epidemic</a> </em></p>
@@ -1177,12 +1229,12 @@ The following dataset contains mortality rates and death numbers due to opioid o
 </ul>
 <h1 id="Exploratory-Data-Analysis">Exploratory Data Analysis<a class="anchor-link" href="#Exploratory-Data-Analysis">&#182;</a></h1><p>Let's do some exploratory data analysis before we make predictions.</p>
 <p>First, let's examine the distribution of the county level opioid overdose mortality rate.</p>
-<h1 id="Distribution-of-County-Level-Opioid-Overdose-Mortality-Rate">Distribution of County Level Opioid Overdose Mortality Rate<a class="anchor-link" href="#Distribution-of-County-Level-Opioid-Overdose-Mortality-Rate">&#182;</a></h1><p><img width="650" src="images/distribution_of_opioid_overdose_mortality_rate.png" /></p>
+<h2 id="Distribution-of-County-Level-Opioid-Overdose-Mortality-Rate">Distribution of County Level Opioid Overdose Mortality Rate<a class="anchor-link" href="#Distribution-of-County-Level-Opioid-Overdose-Mortality-Rate">&#182;</a></h2><p><img width="650" src="images/distribution_of_opioid_overdose_mortality_rate.png" /></p>
 <p>Here, we see that the distribution is skewed right. That is, there are a lot of counties with zero opioid overdose mortality rate. In fact, there are 2,261 counties out of 2,962 counties that have zero opioid overdose mortality rate (76.3 %). Let's now remove all the counties with zero opioid overdose mortality rate and reexamine the distribution of the county level opioid overdose mortality rate.</p>
-<h1 id="Distribution-of-County-Level-Opioid-Overdose-Mortality-Rate-(Opioid-Overdose-Mortality-Rate-Greater-Than-Zero)">Distribution of County Level Opioid Overdose Mortality Rate (Opioid Overdose Mortality Rate Greater Than Zero)<a class="anchor-link" href="#Distribution-of-County-Level-Opioid-Overdose-Mortality-Rate-(Opioid-Overdose-Mortality-Rate-Greater-Than-Zero)">&#182;</a></h1><p><img width="650" src="images/distribution_of_opioid_overdose_mortality_rate_greater_than_zero.png" /></p>
+<h2 id="Distribution-of-County-Level-Opioid-Overdose-Mortality-Rate-(Opioid-Overdose-Mortality-Rate-Greater-Than-Zero)">Distribution of County Level Opioid Overdose Mortality Rate (Opioid Overdose Mortality Rate Greater Than Zero)<a class="anchor-link" href="#Distribution-of-County-Level-Opioid-Overdose-Mortality-Rate-(Opioid-Overdose-Mortality-Rate-Greater-Than-Zero)">&#182;</a></h2><p><img width="650" src="images/distribution_of_opioid_overdose_mortality_rate_greater_than_zero.png" /></p>
 <p>When we remove all the counties with zero opioid overdose mortality rate, we see that the distribution is still right-skewed. The median for the opioid overdose mortality rate is 16.5 people per 100,000 people. 90th percentile for the opioid overdose mortality rate is 35.9 people per 100,000 people.</p>
 <p>Let's now look at the distributions of all other variables except opioid mortality rate.</p>
-<h2 id="Violin-Plots-of-All-Variables-Except-Crude-Mortality-Rate">Violin Plots of All Variables Except Crude Mortality Rate<a class="anchor-link" href="#Violin-Plots-of-All-Variables-Except-Crude-Mortality-Rate">&#182;</a></h2><p><img width="650" src="images/violin_plots_all_other_variables.png" /></p>
+<h2 id="Violin-Plots-of-All-Variables-Except-Opioid-Overdose-Mortality-Rate">Violin Plots of All Variables Except Opioid Overdose Mortality Rate<a class="anchor-link" href="#Violin-Plots-of-All-Variables-Except-Opioid-Overdose-Mortality-Rate">&#182;</a></h2><p><img width="650" src="images/violin_plots_all_other_variables.png" /></p>
 <h2 id="Correlation-Heat-Map-of-All-the-Variables">Correlation Heat Map of All the Variables<a class="anchor-link" href="#Correlation-Heat-Map-of-All-the-Variables">&#182;</a></h2><p><img width="650" src="images/correlation_heat_map.png" /></p>
 <p>Let's examine the top twelve variable pairs with the largest correlation magnitude (absolute correlation value). That is, take the absolute value of all the correlation values and select the twelve that are closest to one.</p>
 <h2 id="Top-12-Correlation-Magnitude-Variable-Pairs">Top 12 Correlation Magnitude Variable Pairs<a class="anchor-link" href="#Top-12-Correlation-Magnitude-Variable-Pairs">&#182;</a></h2><p><img width="650" src="images/top_twelve_correlation_magnitude_pairs.png" /></p>
@@ -1296,7 +1348,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t_test_p_values</span>
@@ -1312,7 +1364,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[62]:</div>
+<div class="prompt output_prompt">Out[71]:</div>
 
 
 
@@ -1459,7 +1511,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can see from the boxplot of all the models and the table that random forest regression with tuned hyperparameters are the best performing model. The difference between the mean of random forest and all the other models are statistically significant. CART with default parameters seems to be performing the worst. In general, tree-based methods tend to have lower RMSE than the linear models. Also, tuning hyperparameters lowers RMSE.</p>
-<h2 id="Predicted-vs-Actual-Opioid-Mortality-Rate">Predicted vs Actual Opioid Mortality Rate<a class="anchor-link" href="#Predicted-vs-Actual-Opioid-Mortality-Rate">&#182;</a></h2><p><img width="650" src="images/predicted_actual_regression_all_blog.png" /></p>
+<h2 id="Predicted-vs-Actual-Opioid-Overdose-Mortality-Rate">Predicted vs Actual Opioid Overdose Mortality Rate<a class="anchor-link" href="#Predicted-vs-Actual-Opioid-Overdose-Mortality-Rate">&#182;</a></h2><p><img width="650" src="images/predicted_actual_regression_all_blog.png" /></p>
 <p>Based on the scatterplots above, we can see that the best performing model, random forest regression with tuned hyperparameters, made conservative predictions to minimize RMSE. However, in terms of using the model, I would actually prefer to use stochastic gradient boosting from XGBoost package with tuned hyperparameters. Although the difference in the means between random forest regression with tuned hyperparameters and stochastic gradient boosting from XGBoost package with tuned hyperparameters are statistically significantly different, it does not seem to be practically different. The difference in the bootstrap RMSE means  is 0.13, which is quite small in quantity (9.25 vs 9.37). In practice, this small difference would not make much difference. However, the predictions from stochastic gradient boosting from XGBoost package with tuned hyperparameters seem to fit the actual opioid overdose mortality rate better.</p>
 <h2 id="Feature-Importances">Feature Importances<a class="anchor-link" href="#Feature-Importances">&#182;</a></h2><p><img width="650" src="images/feature_importances.png" /></p>
 <p>Based on the feature importances, we can see that some of the important features from the top-performing models are <strong>asian_or_pacific_islander_%</strong>, <strong>american_indian_or_alaska_native_%</strong>, <strong>Opioid Prescription Rate (per 100)</strong>, and <strong>45_49_years_%</strong>.</p>
@@ -1479,7 +1531,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">population_distribution</span>
@@ -1495,7 +1547,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[63]:</div>
+<div class="prompt output_prompt">Out[72]:</div>
 
 
 
@@ -1602,7 +1654,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 </ul><p>Based on this information, let's remove the 1,078 counties that have population less than 18,646 and redo the prediction analysis using 1,183 counties with zero opioid overdose mortality rate and 701 counties that have opioid overdose mortality rate greater than zero. In total, let's redo the analysis with 1,884 county data instead of 2,962 county data.</p>
 <h2 id="Boxplot-of-Bootstrap-RMSE-Distributions-for-All-Methods-(Population-&gt;=-18,646)">Boxplot of Bootstrap RMSE Distributions for All Methods (Population &gt;= 18,646)<a class="anchor-link" href="#Boxplot-of-Bootstrap-RMSE-Distributions-for-All-Methods-(Population-&gt;=-18,646)">&#182;</a></h2><p><img width="650" src="images/pop_adj_boxplot_bootstrap_dist.png" /></p>
 <p>From the boxplots, we see that the best performing model is stochastic gradient boosting from sklearn package with tuned hyperparameters. The difference of the means is statistically significant between the best performing model and all the other models. However, in terms of practical significance, there seems to not be a very big difference among the top performing models.</p>
-<h2 id="Predicted-vs-Actual-Opioid-Mortality-Rate-(Population-&gt;=-18,646)">Predicted vs Actual Opioid Mortality Rate (Population &gt;= 18,646)<a class="anchor-link" href="#Predicted-vs-Actual-Opioid-Mortality-Rate-(Population-&gt;=-18,646)">&#182;</a></h2><p><img width="650" src="images/pop_adj_predicted_actual_regression_all_blog.png" /></p>
+<h2 id="Predicted-vs-Actual-Opioid-Overdose-Mortality-Rate-(Population-&gt;=-18,646)">Predicted vs Actual Opioid Overdose Mortality Rate (Population &gt;= 18,646)<a class="anchor-link" href="#Predicted-vs-Actual-Opioid-Overdose-Mortality-Rate-(Population-&gt;=-18,646)">&#182;</a></h2><p><img width="650" src="images/pop_adj_predicted_actual_regression_all_blog.png" /></p>
 <p>Based on the scatterplots, I would conclude that the fourth best performing model in terms of RMSE, stochastic gradient boosting from XGBoost package with tuned hyperparameters seem to make the best predictions.</p>
 <h2 id="Feature-Importances-(Population-&gt;=-18,646)">Feature Importances (Population &gt;= 18,646)<a class="anchor-link" href="#Feature-Importances-(Population-&gt;=-18,646)">&#182;</a></h2><p><img width="650" src="images/pop_adj_feature_importances.png" /></p>
 <p>Based on the feature importances, we can see that some of the important features from the top-performing models are <strong>american_indian_or_alaska_native_%</strong>, <strong>asian_or_pacific_islander_%</strong>, <strong>45_49_years_%</strong>, and <strong>Opioid Prescription Rate (per 100)</strong>.</p>
@@ -1631,8 +1683,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 </ol>
 <p><strong>Opioid Prescription Rate (per 100)</strong> seems to make sense in that higher <strong>Opioid Prescription Rate (per 100)</strong> would lead to higher opioid overdose mortality rate. However, it is surprising to see the other three predictor variables as being the top features in predicting opioid overdose mortality rate.</p>
 <h1 id="Further-Research">Further Research<a class="anchor-link" href="#Further-Research">&#182;</a></h1><p>Findings from this data analysis can be used to investigate some causes of opioid addiction and opioid overdose mortality rate. Further investigation should also be done to see why <strong>american_indian_or_alaska_native_%</strong>, <strong>asian_or_pacific_islander_%</strong>, and <strong>45_49_years_%</strong> play an important role in predicting opioid overdose mortality rate.</p>
-<h1 id="Presentation-Slides">Presentation Slides<a class="anchor-link" href="#Presentation-Slides">&#182;</a></h1><p><a href="https://danielhanbitlee.github.io/Springboard/capstone_project/#/">Full Screen Presentation Slides</a></p>
-<embed src="https://danielhanbitlee.github.io/Springboard/capstone_project/#/" style="width:650px; height: 478.94736842105266px;">
+
 </div>
 </div>
 </div>
@@ -1640,7 +1691,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Links">Links<a class="anchor-link" href="#Links">&#182;</a></h1><p>You can find more details from the following links:</p>
+<h1 id="Links">Links<a class="anchor-link" href="#Links">&#182;</a></h1><p>You can find more details regarding this data analysis from the following links:</p>
 <ul>
     <li><a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/data_wrangling.ipynb">Data Wrangling</a></li>
     <li><a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/data_storytelling.ipynb">Data Storytelling</a></li>
