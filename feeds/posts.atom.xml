@@ -975,11 +975,15 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="Outline"&gt;Outline&lt;a class="anchor-link" href="#Outline"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;ol&gt;
+&lt;style&gt;
+.lower-alpha {
+   list-style-type: lower-alpha;
+}
+&lt;/style&gt;&lt;h1 id="Outline"&gt;Outline&lt;a class="anchor-link" href="#Outline"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;ol&gt;
     &lt;li&gt;Presentation Slides&lt;/li&gt;
     &lt;li&gt;Summary&lt;/li&gt;
     &lt;li&gt;What is the opioid epidemic?
-        &lt;ol type="a"&gt;
+        &lt;ol type="a" class="lower-alpha"&gt;
             &lt;li&gt;Annual Cause of Death by Opioid Overdose&lt;/li&gt;
             &lt;li&gt;Number of Deaths by Demographic Factors 1999 - 2016&lt;/li&gt;
         &lt;/ol&gt;
@@ -1315,7 +1319,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[71]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[74]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;t_test_p_values&lt;/span&gt;
@@ -1331,7 +1335,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[71]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[74]:&lt;/div&gt;
 
 
 
@@ -1498,7 +1502,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[72]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[75]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;population_distribution&lt;/span&gt;
@@ -1514,7 +1518,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[72]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[75]:&lt;/div&gt;
 
 
 
