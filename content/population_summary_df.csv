@@ -1,0 +1,9 @@
+,Population Estimate of All Counties,Population Estimate of Counties with Zero Mortality,Population Estimate of Counties with Greater than Zero Mortality
+count,"2,962","2,261",701
+mean,"108,844","30,427","361,770"
+std,"339,283","37,773","631,186"
+min,"1,183","1,183","18,646"
+25%,"12,949","10,242","91,251"
+50%,"28,180","19,920","174,827"
+75%,"74,528","37,304","390,918"
+max,"10,137,915","849,843","10,137,915"
