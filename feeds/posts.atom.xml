@@ -1145,107 +1145,110 @@ The following dataset contains mortality rates and death numbers due to opioid o
     &lt;/li&gt;
 &lt;/ul&gt;
 
-From 3147 counties, I remove all the missing data. After removing the missing data, I have left over 2962 county data and 40 columns. More details regarding data wrangling can be found [here](https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/data_wrangling.ipynb).
+From 3147 counties, I remove all the missing data. After removing the missing data, I have left over 2962 county data and 40 columns. More details regarding data wrangling can be found &lt;a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/data_wrangling.ipynb"&gt;here&lt;/a&gt;.
 
 &lt;h1 id="variables"&gt;Variables&lt;/h1&gt;
 
 The following are the variables included in the main dataset that is used for analysis. In bold are the variable names.
 
-* &lt;b&gt;10\_14\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 10 and 14 years of age in 2016
+&lt;ul&gt;
+    &lt;li&gt;&lt;b&gt;10\_14\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 10 and 14 years of age in 2016&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;15\_19\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 15 and 19 years of age in 2016&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;1\_4\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 1 and 4 years of age in 2016&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;20\_24\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 20 and 24 years of age in 2016&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;25\_29\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 25 and 29 years of age in 2016&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;30\_34\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 30 and 34 years of age in 2016&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;35\_39\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 35 and 39 years of age in 2016&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;40\_44\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 40 and 44 years of age in 2016&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;45\_49\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 45 and 49 years of age in 2016&lt;/li&gt;
 
-* &lt;b&gt;15\_19\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 15 and 19 years of age in 2016
+    &lt;li&gt;&lt;b&gt;50\_54\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 50 and 54 years of age in 2016&lt;/li&gt;
 
-* &lt;b&gt;1\_4\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 1 and 4 years of age in 2016
+    &lt;li&gt;&lt;b&gt;55\_59\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 55 and 59 years of age in 2016&lt;/li&gt;
 
-* &lt;b&gt;20\_24\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 20 and 24 years of age in 2016
+    &lt;li&gt;&lt;b&gt;5\_9\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 5 and 9 years of age in 2016&lt;/li&gt;
 
-* &lt;b&gt;25\_29\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 25 and 29 years of age in 2016
+    &lt;li&gt;&lt;b&gt;60\_64\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 60 and 64 years of age in 2016&lt;/li&gt;
 
-* &lt;b&gt;30\_34\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 30 and 34 years of age in 2016
+    &lt;li&gt;&lt;b&gt;65\_69\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 65 and 69 years of age in 2016&lt;/li&gt;
 
-* &lt;b&gt;35\_39\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 35 and 39 years of age in 2016
+    &lt;li&gt;&lt;b&gt;70\_74\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 70 and 74 years of age in 2016&lt;/li&gt;
 
-* &lt;b&gt;40\_44\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 40 and 44 years of age in 2016
+    &lt;li&gt;&lt;b&gt;75\_79\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 75 and 79 years of age in 2016&lt;/li&gt;
 
-* &lt;b&gt;45\_49\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 45 and 49 years of age in 2016
+    &lt;li&gt;&lt;b&gt;80\_84\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 80 and 84 years of age in 2016&lt;/li&gt;
 
-* &lt;b&gt;50\_54\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 50 and 54 years of age in 2016
+    &lt;li&gt;&lt;b&gt;85+\_years\_%&lt;/b&gt; - Estimated percent of population in county that are 85 years old and older in 2016&lt;/li&gt;
 
-* &lt;b&gt;55\_59\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 55 and 59 years of age in 2016
+    &lt;li&gt;&lt;b&gt;All Other Death Rate 2016 (per 100,000)&lt;/b&gt; - 2016 county death rate from all causes excluding opioid overdose&lt;/li&gt;
 
-* &lt;b&gt;5\_9\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 5 and 9 years of age in 2016
+    &lt;li&gt;&lt;b&gt;american\_indian\_or\_alaska\_native\_%&lt;/b&gt; - Estimated percent of population in county that are American Indian or Alaska Native in 2016&lt;/li&gt;
 
-* &lt;b&gt;60\_64\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 60 and 64 years of age in 2016
+    &lt;li&gt;&lt;b&gt;asian\_or\_pacific\_islander\_%&lt;/b&gt; - Estimated percent of population in county that are Asian or Pacific Islander in 2016&lt;/li&gt;
 
-* &lt;b&gt;65\_69\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 65 and 69 years of age in 2016
+    &lt;li&gt;&lt;b&gt;Birth Rate 2016 (per 100)&lt;/b&gt; - Birth rate in period 7/1/2015 to 6/30/2016 (per 1000 people)    &lt;/li&gt;
 
-* &lt;b&gt;70\_74\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 70 and 74 years of age in 2016
+    &lt;li&gt;&lt;b&gt;black\_or\_african\_american\_%&lt;/b&gt; - Estimated percent of population in county that are Black or African American in 2016&lt;/li&gt;
 
-* &lt;b&gt;75\_79\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 75 and 79 years of age in 2016
+    &lt;li&gt;&lt;b&gt;county&lt;/b&gt; - County's name &lt;/li&gt;
 
-* &lt;b&gt;80\_84\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 80 and 84 years of age in 2016
+    &lt;li&gt;&lt;b&gt;county\_state&lt;/b&gt; - County's name and state the county is located in &lt;/li&gt;
 
-* &lt;b&gt;85+\_years\_%&lt;/b&gt; - Estimated percent of population in county that are 85 years old and older in 2016
+    &lt;li&gt;&lt;b&gt;Crude Opioid Mortality Rate (per 100,000)&lt;/b&gt; - Estimated rate for deaths caused by opioid overdose in the county for 2016 (per 100,000 people)
+        &lt;ul&gt;
+            &lt;li&gt;Specifically, the types of drug-related deaths include the following:
+                &lt;ul&gt;
+                    &lt;li&gt;Drug poisonings (overdose)&lt;/li&gt;
+                    &lt;li&gt;Unintentional&lt;/li&gt;
+                    &lt;li&gt;Suicide&lt;/li&gt;
+                    &lt;li&gt;Homicide&lt;/li&gt;
+                    &lt;li&gt;Undetermined&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+            &lt;li&gt;The specific drugs included in the death rates are the following:
+                &lt;ul&gt;
+                    &lt;li&gt;Opium&lt;/li&gt;
+                    &lt;li&gt;Heroin&lt;/li&gt;
+                    &lt;li&gt;Other opioids&lt;/li&gt;
+                    &lt;li&gt;Methadone&lt;/li&gt;
+                    &lt;li&gt;Other synthetic narcotics&lt;/li&gt;
+                    &lt;li&gt;Other and unspecified narcotics  &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;li&gt;&lt;b&gt;Domestic Migration Rate 2016 (per 100)&lt;/b&gt; - Net domestic migration rate in period 7/1/2015 to 6/30/2016 (per 1000 people)   &lt;/li&gt;
 
-* &lt;b&gt;All Other Death Rate 2016 (per 100,000)&lt;/b&gt; - 2016 county death rate from all causes excluding opioid overdose
+    &lt;li&gt;&lt;b&gt;fips\_code&lt;/b&gt; - County's unique code  &lt;/li&gt;
 
-* &lt;b&gt;american\_indian\_or\_alaska\_native\_%&lt;/b&gt; - Estimated percent of population in county that are American Indian or Alaska Native in 2016
+    &lt;li&gt;&lt;b&gt;GQ Estimates 2016 (count)&lt;/b&gt; - 7/1/2016 Group Quarters total population estimate (number of people)
+        &lt;ul&gt;
+            &lt;li&gt;all people not living in housing units (house, apartment, mobile home, rented rooms)&lt;/li&gt;
+            &lt;li&gt;e.g. people living in correctional facilities, nursing homes, mental hospitals, dormitories, military barracks, or shelters  &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
 
-* &lt;b&gt;asian\_or\_pacific\_islander\_%&lt;/b&gt; - Estimated percent of population in county that are Asian or Pacific Islander in 2016
+    &lt;li&gt;&lt;b&gt;International Migration Rate 2016 (per 100)&lt;/b&gt; - Net international migration rate in period 7/1/2015 to 6/30/2016 (per 1000 people)&lt;/li&gt;
 
-* &lt;b&gt;Birth Rate 2016 (per 100)&lt;/b&gt; - Birth rate in period 7/1/2015 to 6/30/2016 (per 1000 people)    
+    &lt;li&gt;&lt;b&gt;less\_than\_1\_year\_%&lt;/b&gt; - Estimated percent of population in county that are less than one year old in 2016&lt;/li&gt;
 
-* &lt;b&gt;black\_or\_african\_american\_%&lt;/b&gt; - Estimated percent of population in county that are Black or African American in 2016
+    &lt;li&gt;&lt;b&gt;Median Household Income 2016 (dollars)&lt;/b&gt; - Estimate of median household Income, 2016 (in dollars)&lt;/li&gt;
 
-* &lt;b&gt;county&lt;/b&gt; - County's name 
+    &lt;li&gt;&lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt; - Prescription rate for opioids for the county (per 100 people)   &lt;/li&gt;
 
-* &lt;b&gt;county\_state&lt;/b&gt; - County's name and state the county is located in 
+    &lt;li&gt;&lt;b&gt;Estimated percent with High School Diploma Only (%)&lt;/b&gt; - Estimated percent of people with high school diploma only (%)&lt;/li&gt;
 
-* &lt;b&gt;Crude Opioid Mortality Rate (per 100,000)&lt;/b&gt; - Estimated rate for deaths caused by opioid overdose in the county for 2016 (per 100,000 people)
-    * Specifically, the types of drug-related deaths include the following:
-        * Drug poisonings (overdose)
-        * Unintentional
-        * Suicide
-        * Homicide
-        * Undetermined
-    * The specific drugs included in the death rates are the following:
-        * Opium
-        * Heroin
-        * Other opioids
-        * Methadone
-        * Other synthetic narcotics
-        * Other and unspecified narcotics  
+    &lt;li&gt;&lt;b&gt;Population Change 2016 (count)&lt;/b&gt; - Net change in resident total population 7/1/2015 to 7/1/2016 (number of people)&lt;/li&gt;
 
-* &lt;b&gt;Domestic Migration Rate 2016 (per 100)&lt;/b&gt; - Net domestic migration rate in period 7/1/2015 to 6/30/2016 (per 1000 people)   
+    &lt;li&gt;&lt;b&gt;Population Estimate 2016 (count)&lt;/b&gt; - Estimated population for the county in 2016    &lt;/li&gt;
 
-* &lt;b&gt;fips\_code&lt;/b&gt; - County's unique code  
+    &lt;li&gt;&lt;b&gt;Poverty Estimated percentage 2016 (%)&lt;/b&gt; - Estimated percent of people of all ages in poverty 2016 (%)   &lt;/li&gt;
 
-* &lt;b&gt;GQ Estimates 2016 (count)&lt;/b&gt; - 7/1/2016 Group Quarters total population estimate (number of people)
+    &lt;li&gt;&lt;b&gt;state&lt;/b&gt; - State the county is in    &lt;/li&gt;
 
-    * all people not living in housing units (house, apartment, mobile home, rented rooms)
-    * e.g. people living in correctional facilities, nursing homes, mental hospitals, dormitories, military barracks, or shelters  
+    &lt;li&gt;&lt;b&gt;Unemployment Rate 2016 (per 100)&lt;/b&gt; - Unemployment rate, 2016 (per 100 people)&lt;/li&gt;
 
-* &lt;b&gt;International Migration Rate 2016 (per 100)&lt;/b&gt; - Net international migration rate in period 7/1/2015 to 6/30/2016 (per 1000 people)
-
-* &lt;b&gt;less\_than\_1\_year\_%&lt;/b&gt; - Estimated percent of population in county that are less than one year old in 2016
-
-* &lt;b&gt;Median Household Income 2016 (dollars)&lt;/b&gt; - Estimate of median household Income, 2016 (in dollars)
-
-* &lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt; - Prescription rate for opioids for the county (per 100 people)   
-
-* &lt;b&gt;Estimated percent with High School Diploma Only (%)&lt;/b&gt; - Estimated percent of people with high school diploma only (%)
-
-* &lt;b&gt;Population Change 2016 (count)&lt;/b&gt; - Net change in resident total population 7/1/2015 to 7/1/2016 (number of people)
-
-* &lt;b&gt;Population Estimate 2016 (count)&lt;/b&gt; - Estimated population for the county in 2016    
-
-* &lt;b&gt;Poverty Estimated percentage 2016 (%)&lt;/b&gt; - Estimated percent of people of all ages in poverty 2016 (%)   
-
-* &lt;b&gt;state&lt;/b&gt; - State the county is in    
-
-* &lt;b&gt;Unemployment Rate 2016 (per 100)&lt;/b&gt; - Unemployment rate, 2016 (per 100 people)
-
-* &lt;b&gt;white\_%&lt;/b&gt; - Estimated percent of population in county that are White in 2016
+    &lt;li&gt;&lt;b&gt;white\_%&lt;/b&gt; - Estimated percent of population in county that are White in 2016&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id="exploratory_data_analysis"&gt;Exploratory Data Analysis&lt;/h1&gt;
 
@@ -1552,12 +1555,11 @@ The following is a list of all the variables used to predict county level opioid
 &lt;/ol&gt;
 &lt;p&gt;There is also one finding that is quite surprising. There is no one predictor variable that contribute overwhelmingly to opioid overdose mortality rate. Poverty rate, median household income, and unemployment rates are not the most important predictors in opioid overdose mortality rate. Instead, what we find are variables like the following:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;b&gt;american_indian_or_alaska\_native\_%&lt;/b&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;asian_or_pacific\_islander\_%&lt;/b&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;45_49\_years\_%&lt;/b&gt;&lt;/li&gt;
-&lt;li&gt;&lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt; seems to make sense in that higher &lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt; would lead to higher opioid overdose mortality rate. However, it is surprising to see the other three predictor variables as being the top features in predicting opioid overdose mortality rate.&lt;/p&gt;
+    &lt;li&gt;&lt;b&gt;american_indian_or_alaska\_native\_%&lt;/b&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;asian_or_pacific\_islander\_%&lt;/b&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;45_49\_years\_%&lt;/b&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;p&gt;&lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt; seems to make sense in that higher &lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt; would lead to higher opioid overdose mortality rate. However, it is surprising to see the other three predictor variables as being the top features in predicting opioid overdose mortality rate.&lt;/p&gt;
 &lt;h1 id="further_research"&gt;Further Research&lt;/h1&gt;&lt;p&gt;Findings from this data analysis can be used to investigate some causes of opioid addiction and opioid overdose mortality rate. Further investigation should also be done to see why &lt;b&gt;american_indian_or_alaska\_native\_%&lt;/b&gt;, &lt;b&gt;asian_or_pacific\_islander\_%&lt;/b&gt;, and &lt;b&gt;45_49\_years\_%&lt;/b&gt; play an important role in predicting opioid overdose mortality rate.&lt;/p&gt;
 &lt;h1 id="references"&gt;References&lt;/h1&gt;
 &lt;p id="fn1"&gt;1. &lt;a href="https://en.wikipedia.org/wiki/Opioid_epidemic"&gt;https://en.wikipedia.org/wiki/Opioid_epidemic&lt;/a&gt;&lt;a href="#ref1" title="Jump back to footnote 1 in the text."&gt;↩&lt;/a&gt;&lt;/p&gt;
