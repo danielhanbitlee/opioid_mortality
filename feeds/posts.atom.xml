@@ -998,6 +998,7 @@ body {
     width: 100%;
     backface-visibility: hidden;
     will-change: overflow;
+    flex-wrap: wrap;
 }
 .Left,
 .Middle {
