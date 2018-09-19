@@ -979,80 +979,172 @@ h6:hover .anchor-link {
 .lower-alpha {
    list-style-type: lower-alpha;
 }
-&lt;/style&gt;&lt;h1 id="Outline"&gt;Outline&lt;a class="anchor-link" href="#Outline"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;ol&gt;
-    &lt;li&gt;Presentation Slides&lt;/li&gt;
-    &lt;li&gt;Summary&lt;/li&gt;
-    &lt;li&gt;What is the opioid epidemic?
-        &lt;ol type="a" class="lower-alpha"&gt;
-            &lt;li&gt;Annual Cause of Death by Opioid Overdose&lt;/li&gt;
-            &lt;li&gt;Number of Deaths by Demographic Factors 1999 - 2016&lt;/li&gt;
-        &lt;/ol&gt;
-    &lt;/li&gt;
-    &lt;li&gt;Reading Between the Numbers - Why Should We Care?&lt;/li&gt;
-    &lt;li&gt;USA by Opioid Overdose Mortality Rate, 2016
-        &lt;ol type="a" class="lower-alpha"&gt;
-            &lt;li&gt;Top Ten Counties with Highest Mortality Rate Caused by Opioid Overdose in 2016&lt;/li&gt;
-        &lt;/ol&gt;
-    &lt;/li&gt;
-    &lt;li&gt;Why Predict Opioid Overdose Mortality Rate?&lt;/li&gt;
-    &lt;li&gt;Datasets&lt;/li&gt;
-    &lt;li&gt;Variables&lt;/li&gt;
-    &lt;li&gt;Exploratory Data Analysis
-        &lt;ol type="a" class="lower-alpha"&gt;
-            &lt;li&gt;Distribution of County Level Opioid Overdose Mortality Rate&lt;/li&gt;
-            &lt;li&gt;Distribution of County Level Opioid Overdose Mortality Rate (Opioid Overdose Mortality Rate Greater Than Zero)&lt;/li&gt;
-            &lt;li&gt;Violin Plots of All Variables Except Opioid Overdose Mortality Rate&lt;/li&gt;
-            &lt;li&gt;Correlation Heat Map of All the Variables&lt;/li&gt;
-            &lt;li&gt;Top 12 Correlation Magnitude Variable Pairs&lt;/li&gt;
-            &lt;li&gt;Pearson's Correlation Between Crude Mortality Rate and All Other Variables&lt;/li&gt;
-            &lt;li&gt;Conclusion From Exploratory Data Analysis&lt;/li&gt;
-        &lt;/ol&gt;
-    &lt;/li&gt;
-    &lt;li&gt;Predictions
-        &lt;ol type="a" class="lower-alpha"&gt;
-            &lt;li&gt;Bootstrap RMSE Distributions for All Methods&lt;/li&gt;
-            &lt;li&gt;Boxplot of Bootstrap RMSE Distributions for All Methods&lt;/li&gt;
-            &lt;li&gt;Predicted vs Actual Opioid Overdose Mortality Rate&lt;/li&gt;
-            &lt;li&gt;Feature Importances&lt;/li&gt;
-        &lt;/ol&gt;
-    &lt;/li&gt;
-    &lt;li&gt;A Closer Look at the County Level Population Distribution
-        &lt;ol type="a" class="lower-alpha"&gt;
-            &lt;li&gt;Boxplot of Bootstrap RMSE Distributions for All Methods (Population &gt;= 18,646)&lt;/li&gt;
-            &lt;li&gt;Predicted vs Actual Opioid Overdose Mortality Rate (Population &gt;= 18,646)&lt;/li&gt;
-            &lt;li&gt;Feature Importances (Population &gt;= 18,646)&lt;/li&gt;
-        &lt;/ol&gt;
-    &lt;/li&gt;
-    &lt;li&gt;Conclusion from Prediction Analysis&lt;/li&gt;
-    &lt;li&gt;Further Research&lt;/li&gt;
-    &lt;li&gt;References&lt;/li&gt;
-    &lt;li&gt;Links&lt;/li&gt;
-    &lt;li&gt;Special Thanks&lt;/li&gt;
-&lt;/ol&gt;&lt;h1 id="Presentation-Slides"&gt;Presentation Slides&lt;a class="anchor-link" href="#Presentation-Slides"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;a href="https://danielhanbitlee.github.io/Springboard/capstone_project/#/"&gt;Full Screen Presentation Slides&lt;/a&gt;&lt;/p&gt;
+body {
+    overflow-x: hidden;
+}
+/*Just removing default browser padding/margin*/
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+.Container {
+    display: flex;
+    overflow: hidden;
+    height: 100vh;
+    margin-top: -100px;
+    padding-top: 100px;
+    position: relative;
+    width: 100%;
+    backface-visibility: hidden;
+    will-change: overflow;
+}
+.Left,
+.Middle {
+    overflow: auto;
+    height: auto;
+    padding: .5rem;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+}
+.Left::-webkit-scrollbar,
+.Middle::-webkit-scrollbar {
+    display: none;
+}
+.Left {
+    width: 12.5rem;
+}
+.Middle {
+    flex: 1;
+}
+&lt;/style&gt;&lt;div class="Container"&gt;
+    &lt;div class="Left"&gt;
+    &lt;h1&gt;Table of Contents&lt;/h1&gt;
+
+    &lt;ol&gt;
+        &lt;li&gt;&lt;a href="#presentation_slides"&gt;Presentation Slides&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#abstract"&gt;Abstract&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#what_is_the_opioid_epidemic"&gt;What is the opioid epidemic?&lt;/a&gt;
+            &lt;ol type="a" class="lower-alpha"&gt;
+                &lt;li&gt;&lt;a href="#annual_cause_of_death_by_opioid_overdose"&gt;Annual Cause of Death by Opioid Overdose&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#number_of_deaths_by_demographic_factors_1999_2016"&gt;Number of Deaths by Demographic Factors 1999 - 2016&lt;/a&gt;&lt;/li&gt;
+            &lt;/ol&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href="#reading_between_the_numbers_why_should_we_care"&gt;Reading Between the Numbers - Why Should We Care?&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#living_with_an_opioid_addiction"&gt;Living with an Opioid Addiction&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#usa_by_opioid_overdose_mortality_rate_2016"&gt;USA by Opioid Overdose Mortality Rate, 2016&lt;/a&gt;
+            &lt;ol type="a" class="lower-alpha"&gt;
+                &lt;li&gt;&lt;a href="#top_ten_counties_with_highest_mortality_rate_caused_by_opioid_overdose_in_2016"&gt;Top Ten Counties with Highest Mortality Rate Caused by Opioid Overdose in 2016&lt;/a&gt;&lt;/li&gt;
+            &lt;/ol&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href="#why_predict_opioid_overdose_mortality_rate"&gt;Why Predict Opioid Overdose Mortality Rate?&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#datasets"&gt;Datasets&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#variables"&gt;Variables&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#exploratory_data_analysis"&gt;Exploratory Data Analysis&lt;/a&gt;
+            &lt;ol type="a" class="lower-alpha"&gt;
+                &lt;li&gt;&lt;a href="#distribution_of_county_level_opioid_overdose_mortality_rate"&gt;Distribution of County Level Opioid Overdose Mortality Rate&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#distribution_of_county_level_opioid_overdose_mortality_rate_opioid_overdose_moratality_rate_greater_than_zero"&gt;Distribution of County Level Opioid Overdose Mortality Rate (Opioid Overdose Mortality Rate Greater Than Zero)&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#violin_plots_of_all_variables_except_opioid_overdose_mortality_rate"&gt;Violin Plots of All Variables Except Opioid Overdose Mortality Rate&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#correlation_heat_map_of_all_the_variables"&gt;Correlation Heat Map of All the Variables&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#top_12_correlation_magnitude_variable_pairs"&gt;Top 12 Correlation Magnitude Variable Pairs&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#pearsons_correlation_between_crude_mortality_rate_and_all_other_variables"&gt;Pearson's Correlation Between Crude Mortality Rate and All Other Variables&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#conclusion_from_exploratory_data_analysis"&gt;Conclusion From Exploratory Data Analysis&lt;/a&gt;&lt;/li&gt;
+            &lt;/ol&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href="#predictions"&gt;Predictions&lt;/a&gt;
+            &lt;ol type="a" class="lower-alpha"&gt;
+                &lt;li&gt;&lt;a href="#hurdle_model"&gt;Hurdle Model&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#prediction_procedure"&gt;Prediction Procedure&lt;/h2&gt;                
+                &lt;li&gt;&lt;a href="#bootstrap_rmse_distributions_for_all_methods"&gt;Bootstrap RMSE Distributions for All Methods&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#boxplot_of_bootstrap_rmse_distributions_for_all_methods"&gt;Boxplot of Bootstrap RMSE Distributions for All Methods&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#table_of_two_sample_t_test_p_values_between_models"&gt;Table of Two-Sample T-Test P-Values Between Models&lt;/a&gt;&lt;/li&gt;                
+                &lt;li&gt;&lt;a href="#predicted_vs_actual_opioid_overdose_mortality_rate"&gt;Predicted vs Actual Opioid Overdose Mortality Rate&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#feature_importances"&gt;Feature Importances&lt;/a&gt;&lt;/li&gt;
+            &lt;/ol&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href="#a_closer_look_at_the_county_level_population_distribution"&gt;A Closer Look at the County Level Population Distribution&lt;/a&gt;
+            &lt;ol type="a" class="lower-alpha"&gt;
+                &lt;li&gt;&lt;a href="#boxplot_of_bootstrap_rmse_distributions_for_all_methods_population_18646"&gt;Boxplot of Bootstrap RMSE Distributions for All Methods (Population &gt;= 18,646)&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#predicted_vs_actual_opioid_overdose_mortality_rate_population_18646"&gt;Predicted vs Actual Opioid Overdose Mortality Rate (Population &gt;= 18,646)&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#feature_importances_population_18646"&gt;Feature Importances (Population &gt;= 18,646)&lt;/a&gt;&lt;/li&gt;
+            &lt;/ol&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href="#conclusion_from_prediction_analysis"&gt;Conclusion from Prediction Analysis&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#further_research"&gt;Further Research&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#links"&gt;Links&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#special_thanks"&gt;Special Thanks&lt;/a&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/div&gt;&lt;div class="Middle"&gt;
+&lt;h1 id="presentation_slides"&gt;Presentation Slides&lt;/h1&gt;
+
+
+&lt;a href="https://danielhanbitlee.github.io/Springboard/capstone_project/#/"&gt;Full Screen Presentation Slides&lt;/a&gt;
+
 &lt;embed src="https://danielhanbitlee.github.io/Springboard/capstone_project/#/" style="width:650px; height: 478.94736842105266px;"&gt;
 
-&lt;h1 id="What-is-the-opioid-epidemic?"&gt;What is the opioid epidemic?&lt;a class="anchor-link" href="#What-is-the-opioid-epidemic?"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Wikipedia defines the opioid epidemic as the following:&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;The opioid epidemic or opioid crisis is the rapid increase in the use of prescription and non-prescription opioid drugs  in the United States and Canada beginning in the late 1990s and continuing throughout the next two decades. Opioids are a diverse class of moderately strong painkillers, including oxycodone (commonly sold under the trade names OxyContin and Percocet), hydrocodone (Vicodin), and a very strong painkiller, fentanyl, which is synthesized to resemble other opiates such as opium-derived morphine and heroin.&lt;/p&gt;
+&lt;h1 id="abstract"&gt;Abstract&lt;/h1&gt;
+
+Since America is in the midst of the opioid epidemic, there is a greater urgency to investigate the cause of the problem. To help with this, I performed exploratory data analysis and looked into predicting the 2016 US county opioid overdose mortality rate given 35 different predictor variables. I believe that if we can make reasonable predictions of county level opioid overdose mortality rate, we can focus on the counties that are predicted to have high opioid overdose mortality rate. This will help us to make better use of our resources as well as study further to help find the cause of the problem. To make predictions, I used 18 different algorithms. In terms of root mean squared error (RMSE), the best model is random forest regression with tuned hyperparameters, which had a mean bootstrap RMSE of 9.25 deaths per 100,000 people. In terms of the fit to the data, the best model seemed to be XGBoost's stochastic gradient descent with tuned parameters, which had a mean bootstrap RMSE of 9.37 deaths per 100,000 people. With this tool, we can now predict any given county's opioid overdose mortality rate. Further investigation should be performed to look into why certain demographic information, such as percentage of county's population who are American Indian or Alaska Native and percentage of county population who are between 45 to 49 years old, plays an important role in predictions.
+
+&lt;h1 id="what_is_the_opioid_epidemic"&gt;What is the opioid epidemic?&lt;/h1&gt;
+
+Wikipedia defines the opioid epidemic as the following:
+
+&lt;blockquote cite="https://en.wikipedia.org/wiki/Opioid_epidemic"&gt;
+The opioid epidemic or opioid crisis is the rapid increase in the use of prescription and non-prescription opioid drugs  in the United States and Canada beginning in the late 1990s and continuing throughout the next two decades. Opioids are a diverse class of moderately strong painkillers, including oxycodone (commonly sold under the trade names OxyContin and Percocet), hydrocodone (Vicodin), and a very strong painkiller, fentanyl, which is synthesized to resemble other opiates such as opium-derived morphine and heroin.&lt;sup&gt;&lt;a href="#fn1" id="ref1"&gt;1&lt;/a&gt;&lt;/sup&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;em&gt;Source: &lt;a href="https://en.wikipedia.org/wiki/Opioid_epidemic"&gt;https://en.wikipedia.org/wiki/Opioid_epidemic&lt;/a&gt; &lt;/em&gt;&lt;/p&gt;
-&lt;h3 id="From-1999-to-2016-in-America,-the-increase-in-deaths-due-to-opioid-overdose-increased-by-425%,-from-8,050-deaths-in-1999-to-42,249-deaths-in-2016.-That's-over-four-times-the-increase-in-17-years."&gt;From 1999 to 2016 in America, the increase in deaths due to opioid overdose increased by 425%, from 8,050 deaths in 1999 to 42,249 deaths in 2016. That's over four times the increase in 17 years.&lt;a class="anchor-link" href="#From-1999-to-2016-in-America,-the-increase-in-deaths-due-to-opioid-overdose-increased-by-425%,-from-8,050-deaths-in-1999-to-42,249-deaths-in-2016.-That's-over-four-times-the-increase-in-17-years."&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;h2 id="Annual-Cause-of-Death-by-Opioid-Overdose"&gt;Annual Cause of Death by Opioid Overdose&lt;a class="anchor-link" href="#Annual-Cause-of-Death-by-Opioid-Overdose"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/annual_deaths_caused_by_opioid_overdose.png" /&gt;&lt;/p&gt;
-&lt;h2 id="Number-of-Deaths-by-Demographic-Factors-1999---2016"&gt;Number of Deaths by Demographic Factors 1999 - 2016&lt;a class="anchor-link" href="#Number-of-Deaths-by-Demographic-Factors-1999---2016"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/who_are_the_victims.png" /&gt;&lt;/p&gt;
-&lt;p&gt;From the bar charts above, we see some surprising and disturbing numbers:&lt;/p&gt;
+
+&lt;h3&gt;From 1999 to 2016 in America, the increase in deaths due to opioid overdose increased by 425%, from 8,050 deaths in 1999 to 42,249 deaths in 2016. That's over four times the increase in 17 years.&lt;/h3&gt;
+
+&lt;h2 id="annual_cause_of_death_by_opioid_overdose"&gt;Annual Cause of Death by Opioid Overdose&lt;/h2&gt;
+&lt;img width="650" src="images/annual_deaths_caused_by_opioid_overdose.png" /&gt;
+
+&lt;h2 id="number_of_deaths_by_demographic_factors_1999_2016"&gt;Number of Deaths by Demographic Factors 1999 - 2016&lt;/h2&gt;
+
+&lt;img width="650" src="images/who_are_the_victims.png" /&gt;
+
+From the bar charts above, we see some surprising and disturbing numbers:
+
 &lt;ul&gt;
-&lt;li&gt;Almost 90% of the deaths caused by opioid overdose are whites&lt;/li&gt;
-&lt;li&gt;66% of the deaths are male&lt;/li&gt;
-&lt;li&gt;48% of deaths are from ages 25-54&lt;/li&gt;
+    &lt;li&gt;Almost 90% of the deaths caused by opioid overdose are whites&lt;/li&gt;
+    &lt;li&gt;66% of the deaths are male&lt;/li&gt;
+    &lt;li&gt;48% of deaths are from ages 25-54&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id="Reading-Between-the-Numbers---Why-Should-We-Care?"&gt;Reading Between the Numbers - Why Should We Care?&lt;a class="anchor-link" href="#Reading-Between-the-Numbers---Why-Should-We-Care?"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Many are dying because of opioid overdose. But it's not just death. Many people that are not represented in these death numbers are struggling with opioid addiction. Not only does opioid addiction destroy the health of the addicted individual, but it also negatively impacts the lives of the addicted person's loved ones, his or her families, and, ultimately, the communities at large.&lt;/p&gt;
-&lt;p&gt;Addiction to opioids, like any other addictions, leads to financial problems, health problems, lack of self control, relational difficulties, and ultimately destroys every aspect of the person, and the end result is death. Watch the video below of the story of Amy and her struggle with opioid addiction to see a glimpse of the struggles that come with opioid addiction.&lt;/p&gt;
-&lt;h3 id="Living-with-an-Opioid-Addiction"&gt;Living with an Opioid Addiction&lt;a class="anchor-link" href="#Living-with-an-Opioid-Addiction"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;iframe style="margin-top:20px; margin-left: auto; margin-right: auto" width="420" height="315" src="https://www.youtube.com/embed/VpEQaa6jzUU"&gt;
-&lt;/iframe&gt;&lt;h1 id="USA-by-Opioid-Overdose-Mortality-Rate,-2016"&gt;USA by Opioid Overdose Mortality Rate, 2016&lt;a class="anchor-link" href="#USA-by-Opioid-Overdose-Mortality-Rate,-2016"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Below, we can see the opioid mortality rates by counties across United States. It seems that midwest and the east cost regions have high concentrations of opioid overdose mortality rates. 2,261 counties have zero deaths due to opioid overdose per 100,000 people. They are colored white in the map below. 701 counties have greater than zero opioid mortality rates.&lt;/p&gt;
-&lt;p&gt;&lt;img width="650" src="images/newplot.png" /&gt;&lt;/p&gt;
-&lt;h2 id="Top-Ten-Counties-with-Highest-Mortality-Rate-Caused-by-Opioid-Overdose-in-2016"&gt;Top Ten Counties with Highest Mortality Rate Caused by Opioid Overdose in 2016&lt;a class="anchor-link" href="#Top-Ten-Counties-with-Highest-Mortality-Rate-Caused-by-Opioid-Overdose-in-2016"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/top_ten_counties_highest_opioid_mortality.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Based on the map and the bar plot, we see that &lt;strong&gt;Harrison, KY&lt;/strong&gt; is the county that had the highest mortality rate per 100,000 people caused by opioid overdose with &lt;strong&gt;118 deaths per 100,000 people due to opioid overdose&lt;/strong&gt;. That is &lt;strong&gt;0.118% of all the people in Harrison County dying because of opioid overdose&lt;/strong&gt;. In terms of state, we see that &lt;strong&gt;West Virginia&lt;/strong&gt; has five counties in the top ten highest mortality rate per 100,000 people caused by opioid overdose.&lt;/p&gt;
-&lt;h1 id="Why-Predict-Opioid-Overdose-Mortality-Rate?"&gt;Why Predict Opioid Overdose Mortality Rate?&lt;a class="anchor-link" href="#Why-Predict-Opioid-Overdose-Mortality-Rate?"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;To help solve the opioid addiction crisis, it is beneficial to predict which counties in the US will have high opioid mortality rates based on variables such as county's median household income, unemployment rate, poverty rate estimate, and opioid prescription rate by health care providers. In total, there are 35 variables used to make the predictions (explained in detail later).&lt;/p&gt;
-&lt;p&gt;Once we predict opioid mortality rates for the counties, we can focus on the counties that are predicted to have high mortality rates to better channel our energy and resources in fighting this epidemic. We can also use these predictions to explore potential causes of opioid overdose. In short, predicting counties' opioid mortality rate will allow us to fight this epidemic more effectively.&lt;/p&gt;
-&lt;h1 id="Datasets"&gt;Datasets&lt;a class="anchor-link" href="#Datasets"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;I gathered the following nine datasets from the following sources and combined them into one dataframe:&lt;/p&gt;
+
+&lt;h1 id="reading_between_the_numbers_why_should_we_care"&gt;Reading Between the Numbers - Why Should We Care?&lt;/h1&gt;
+
+Many are dying because of opioid overdose. But it's not just death. Many people that are not represented in these death numbers are struggling with opioid addiction. Not only does opioid addiction destroy the health of the addicted individual, but it also negatively impacts the lives of the addicted person's loved ones, his or her families, and, ultimately, the communities at large.
+
+Addiction to opioids, like any other addictions, leads to financial problems, health problems, lack of self control, relational difficulties, and ultimately destroys every aspect of the person, and the end result is death. Watch the video below of the story of Amy and her struggle with opioid addiction to see a glimpse of the struggles that come with opioid addiction.
+
+&lt;h2 id="living_with_an_opioid_addiction"&gt;Living with an Opioid Addiction&lt;/h2&gt;
+
+&lt;iframe style="margin-top:20px; margin-left: auto; margin-right: auto" width="420" height="315" src="https://www.youtube.com/embed/VpEQaa6jzUU"&gt;
+&lt;/iframe&gt;
+
+&lt;h1 id="usa_by_opioid_overdose_mortality_rate_2016"&gt;USA by Opioid Overdose Mortality Rate, 2016&lt;/h1&gt;
+
+Below, we can see the opioid mortality rates by counties across United States. It seems that midwest and the east cost regions have high concentrations of opioid overdose mortality rates. 2,261 counties have zero deaths due to opioid overdose per 100,000 people. They are colored white in the map below. 701 counties have greater than zero opioid mortality rates.
+
+&lt;img width="650" src="images/newplot.png" /&gt;
+
+&lt;h2 id="top_ten_counties_with_highest_mortality_rate_caused_by_opioid_overdose_in_2016"&gt;Top Ten Counties with Highest Mortality Rate Caused by Opioid Overdose in 2016&lt;/h2&gt;
+
+&lt;img width="650" src="images/top_ten_counties_highest_opioid_mortality.png" /&gt;
+
+Based on the map and the bar plot, we see that &lt;b&gt;Harrison, KY&lt;/b&gt; is the county that had the highest mortality rate per 100,000 people caused by opioid overdose with &lt;b&gt;118 deaths per 100,000 people due to opioid overdose&lt;/b&gt;. That is &lt;b&gt;0.118% of all the people in Harrison County dying because of opioid overdose&lt;/b&gt;. In terms of state, we see that &lt;b&gt;West Virginia&lt;/b&gt; has five counties in the top ten highest mortality rate per 100,000 people caused by opioid overdose.
+
+&lt;h1 id="why_predict_opioid_overdose_mortality_rate"&gt;Why Predict Opioid Overdose Mortality Rate?&lt;/h1&gt;
+
+To help solve the opioid addiction crisis, it is beneficial to predict which counties in the US will have high opioid mortality rates based on variables such as county's median household income, unemployment rate, poverty rate estimate, and opioid prescription rate by health care providers. In total, there are 35 variables used to make the predictions (explained in detail later).
+
+Once we predict opioid mortality rates for the counties, we can focus on the counties that are predicted to have high mortality rates to better channel our energy and resources in fighting this epidemic. We can also use these predictions to explore potential causes of opioid overdose. In short, predicting counties' opioid mortality rate will allow us to fight this epidemic more effectively.
+
+&lt;h1 id="datasets"&gt;Datasets&lt;/h1&gt;
+
+I gathered the following nine datasets from the following sources and combined them into one dataframe: 
+
 &lt;div&gt;
     &lt;ol&gt;
         &lt;li&gt;&lt;a href="https://www.cdc.gov/drugoverdose/maps/rxcounty2016.html"&gt;US County Opioid Prescription Rates 2016&lt;/a&gt;&lt;/li&gt;
@@ -1092,59 +1184,59 @@ The following dataset contains mortality rates and death numbers due to opioid o
         &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;&lt;p&gt;From 3147 counties, I remove all the missing data. After removing the missing data, I have left over 2962 county data and 40 columns. More details regarding data wrangling can be found &lt;a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/data_wrangling.ipynb"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id="Variables"&gt;Variables&lt;a class="anchor-link" href="#Variables"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;The following are the variables included in the main dataset that is used for analysis. In bold are the variable names.&lt;/p&gt;
+&lt;h1 id="variables"&gt;Variables&lt;/h1&gt;&lt;p&gt;The following are the variables included in the main dataset that is used for analysis. In bold are the variable names.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;10_14_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 10 and 14 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;10\_14\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 10 and 14 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;15_19_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 15 and 19 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;15\_19\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 15 and 19 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;1_4_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 1 and 4 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;1\_4\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 1 and 4 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;20_24_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 20 and 24 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;20\_24\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 20 and 24 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;25_29_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 25 and 29 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;25\_29\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 25 and 29 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;30_34_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 30 and 34 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;30\_34\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 30 and 34 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;35_39_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 35 and 39 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;35\_39\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 35 and 39 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;40_44_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 40 and 44 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;40\_44\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 40 and 44 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;45_49_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 45 and 49 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;45\_49\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 45 and 49 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;50_54_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 50 and 54 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;50\_54\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 50 and 54 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;55_59_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 55 and 59 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;55\_59\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 55 and 59 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;5_9_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 5 and 9 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;5\_9\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 5 and 9 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;60_64_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 60 and 64 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;60\_64\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 60 and 64 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;65_69_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 65 and 69 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;65\_69\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 65 and 69 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;70_74_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 70 and 74 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;70\_74\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 70 and 74 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;75_79_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 75 and 79 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;75\_79\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 75 and 79 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;80_84_years_%&lt;/strong&gt; - Estimated percent of population in county that are between 80 and 84 years of age in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;80\_84\_years\_%&lt;/b&gt; - Estimated percent of population in county that are between 80 and 84 years of age in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;85+_years_%&lt;/strong&gt; - Estimated percent of population in county that are 85 years old and older in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;85+\_years\_%&lt;/b&gt; - Estimated percent of population in county that are 85 years old and older in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;All Other Death Rate 2016 (per 100,000)&lt;/strong&gt; - 2016 county death rate from all causes excluding opioid overdose&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;All Other Death Rate 2016 (per 100,000)&lt;/b&gt; - 2016 county death rate from all causes excluding opioid overdose&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;american_indian_or_alaska_native_%&lt;/strong&gt; - Estimated percent of population in county that are American Indian or Alaska Native in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;american\_indian\_or\_alaska\_native\_%&lt;/b&gt; - Estimated percent of population in county that are American Indian or Alaska Native in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;asian_or_pacific_islander_%&lt;/strong&gt; - Estimated percent of population in county that are Asian or Pacific Islander in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;asian\_or\_pacific\_islander\_%&lt;/b&gt; - Estimated percent of population in county that are Asian or Pacific Islander in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Birth Rate 2016 (per 100)&lt;/strong&gt; - Birth rate in period 7/1/2015 to 6/30/2016 (per 1000 people)&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;Birth Rate 2016 (per 100)&lt;/b&gt; - Birth rate in period 7/1/2015 to 6/30/2016 (per 1000 people)&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;black_or_african_american_%&lt;/strong&gt; - Estimated percent of population in county that are Black or African American in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;black\_or\_african\_american\_%&lt;/b&gt; - Estimated percent of population in county that are Black or African American in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;county&lt;/strong&gt; - County's name&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;county&lt;/b&gt; - County's name&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;county_state&lt;/strong&gt; - County's name and state the county is located in&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;county\_state&lt;/b&gt; - County's name and state the county is located in&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Crude Opioid Mortality Rate (per 100,000)&lt;/strong&gt; - Estimated rate for deaths caused by opioid overdose in the county for 2016 (per 100,000 people)&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;Crude Opioid Mortality Rate (per 100,000)&lt;/b&gt; - Estimated rate for deaths caused by opioid overdose in the county for 2016 (per 100,000 people)&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Specifically, the types of drug-related deaths include the following:&lt;ul&gt;
 &lt;li&gt;Drug poisonings (overdose)&lt;/li&gt;
@@ -1165,76 +1257,66 @@ The following dataset contains mortality rates and death numbers due to opioid o
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Domestic Migration Rate 2016 (per 100)&lt;/strong&gt; - Net domestic migration rate in period 7/1/2015 to 6/30/2016 (per 1000 people)&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;Domestic Migration Rate 2016 (per 100)&lt;/b&gt; - Net domestic migration rate in period 7/1/2015 to 6/30/2016 (per 1000 people)&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;fips_code&lt;/strong&gt; - County's unique code&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;fips\_code&lt;/b&gt; - County's unique code&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;GQ Estimates 2016 (count)&lt;/strong&gt; - 7/1/2016 Group Quarters total population estimate (number of people)&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;GQ Estimates 2016 (count)&lt;/b&gt; - 7/1/2016 Group Quarters total population estimate (number of people)&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;all people not living in housing units (house, apartment, mobile home, rented rooms)&lt;/li&gt;
 &lt;li&gt;e.g. people living in correctional facilities, nursing homes, mental hospitals, dormitories, military barracks, or shelters  &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;International Migration Rate 2016 (per 100)&lt;/strong&gt; - Net international migration rate in period 7/1/2015 to 6/30/2016 (per 1000 people)&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;International Migration Rate 2016 (per 100)&lt;/b&gt; - Net international migration rate in period 7/1/2015 to 6/30/2016 (per 1000 people)&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;less_than_1_year_%&lt;/strong&gt; - Estimated percent of population in county that are less than one year old in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;less\_than\_1\_year\_%&lt;/b&gt; - Estimated percent of population in county that are less than one year old in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Median Household Income 2016 (dollars)&lt;/strong&gt; - Estimate of median household Income, 2016 (in dollars)&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;Median Household Income 2016 (dollars)&lt;/b&gt; - Estimate of median household Income, 2016 (in dollars)&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Opioid Prescription Rate (per 100)&lt;/strong&gt; - Prescription rate for opioids for the county (per 100 people)&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt; - Prescription rate for opioids for the county (per 100 people)&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Estimated percent with High School Diploma Only (%)&lt;/strong&gt; - Estimated percent of people with high school diploma only (%)&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;Estimated percent with High School Diploma Only (%)&lt;/b&gt; - Estimated percent of people with high school diploma only (%)&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Population Change 2016 (count)&lt;/strong&gt; - Net change in resident total population 7/1/2015 to 7/1/2016 (number of people)&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;Population Change 2016 (count)&lt;/b&gt; - Net change in resident total population 7/1/2015 to 7/1/2016 (number of people)&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Population Estimate 2016 (count)&lt;/strong&gt; - Estimated population for the county in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;Population Estimate 2016 (count)&lt;/b&gt; - Estimated population for the county in 2016&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Poverty Estimated percentage 2016 (%)&lt;/strong&gt; - Estimated percent of people of all ages in poverty 2016 (%)&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;Poverty Estimated percentage 2016 (%)&lt;/b&gt; - Estimated percent of people of all ages in poverty 2016 (%)&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;state&lt;/strong&gt; - State the county is in&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;state&lt;/b&gt; - State the county is in&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Unemployment Rate 2016 (per 100)&lt;/strong&gt; - Unemployment rate, 2016 (per 100 people)&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;Unemployment Rate 2016 (per 100)&lt;/b&gt; - Unemployment rate, 2016 (per 100 people)&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;white_%&lt;/strong&gt; - Estimated percent of population in county that are White in 2016&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;b&gt;white\_%&lt;/b&gt; - Estimated percent of population in county that are White in 2016&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id="Exploratory-Data-Analysis"&gt;Exploratory Data Analysis&lt;a class="anchor-link" href="#Exploratory-Data-Analysis"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Let's do some exploratory data analysis before we make predictions.&lt;/p&gt;
+&lt;h1 id="exploratory_data_analysis"&gt;Exploratory Data Analysis&lt;/h1&gt;&lt;p&gt;Let's do some exploratory data analysis before we make predictions.&lt;/p&gt;
 &lt;p&gt;First, let's examine the distribution of the county level opioid overdose mortality rate.&lt;/p&gt;
-&lt;h2 id="Distribution-of-County-Level-Opioid-Overdose-Mortality-Rate"&gt;Distribution of County Level Opioid Overdose Mortality Rate&lt;a class="anchor-link" href="#Distribution-of-County-Level-Opioid-Overdose-Mortality-Rate"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/distribution_of_opioid_overdose_mortality_rate.png" /&gt;&lt;/p&gt;
+&lt;h2 id="distribution_of_county_level_opioid_overdose_mortality_rate"&gt;Distribution of County Level Opioid Overdose Mortality Rate&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/distribution_of_opioid_overdose_mortality_rate.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Here, we see that the distribution is skewed right. That is, there are a lot of counties with zero opioid overdose mortality rate. In fact, there are 2,261 counties out of 2,962 counties that have zero opioid overdose mortality rate (76.3 %). Let's now remove all the counties with zero opioid overdose mortality rate and reexamine the distribution of the county level opioid overdose mortality rate.&lt;/p&gt;
-&lt;h2 id="Distribution-of-County-Level-Opioid-Overdose-Mortality-Rate-(Opioid-Overdose-Mortality-Rate-Greater-Than-Zero)"&gt;Distribution of County Level Opioid Overdose Mortality Rate (Opioid Overdose Mortality Rate Greater Than Zero)&lt;a class="anchor-link" href="#Distribution-of-County-Level-Opioid-Overdose-Mortality-Rate-(Opioid-Overdose-Mortality-Rate-Greater-Than-Zero)"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/distribution_of_opioid_overdose_mortality_rate_greater_than_zero.png" /&gt;&lt;/p&gt;
+&lt;h2 id="distribution_of_county_level_opioid_overdose_mortality_rate_opioid_overdose_moratality_rate_greater_than_zero"&gt;Distribution of County Level Opioid Overdose Mortality Rate (Opioid Overdose Mortality Rate Greater Than Zero)&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/distribution_of_opioid_overdose_mortality_rate_greater_than_zero.png" /&gt;&lt;/p&gt;
 &lt;p&gt;When we remove all the counties with zero opioid overdose mortality rate, we see that the distribution is still right-skewed. The median for the opioid overdose mortality rate is 16.5 people per 100,000 people. 90th percentile for the opioid overdose mortality rate is 35.9 people per 100,000 people.&lt;/p&gt;
 &lt;p&gt;Let's now look at the distributions of all other variables except opioid mortality rate.&lt;/p&gt;
-&lt;h2 id="Violin-Plots-of-All-Variables-Except-Opioid-Overdose-Mortality-Rate"&gt;Violin Plots of All Variables Except Opioid Overdose Mortality Rate&lt;a class="anchor-link" href="#Violin-Plots-of-All-Variables-Except-Opioid-Overdose-Mortality-Rate"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/violin_plots_all_other_variables.png" /&gt;&lt;/p&gt;
-&lt;h2 id="Correlation-Heat-Map-of-All-the-Variables"&gt;Correlation Heat Map of All the Variables&lt;a class="anchor-link" href="#Correlation-Heat-Map-of-All-the-Variables"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/correlation_heat_map.png" /&gt;&lt;/p&gt;
+&lt;h2 id="violin_plots_of_all_variables_except_opioid_overdose_mortality_rate"&gt;Violin Plots of All Variables Except Opioid Overdose Mortality Rate&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/violin_plots_all_other_variables.png" /&gt;&lt;/p&gt;
+&lt;h2 id="correlation_heat_map_of_all_the_variables"&gt;Correlation Heat Map of All the Variables&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/correlation_heat_map.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Let's examine the top twelve variable pairs with the largest correlation magnitude (absolute correlation value). That is, take the absolute value of all the correlation values and select the twelve that are closest to one.&lt;/p&gt;
-&lt;h2 id="Top-12-Correlation-Magnitude-Variable-Pairs"&gt;Top 12 Correlation Magnitude Variable Pairs&lt;a class="anchor-link" href="#Top-12-Correlation-Magnitude-Variable-Pairs"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/top_twelve_correlation_magnitude_pairs.png" /&gt;&lt;/p&gt;
+&lt;h2 id="top_12_correlation_magnitude_variable_pairs"&gt;Top 12 Correlation Magnitude Variable Pairs&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/top_twelve_correlation_magnitude_pairs.png" /&gt;&lt;/p&gt;
 &lt;p&gt;From the above correlation heat map and the scatter plot, we can see the variables that have high correlation values. Also, it's important to note that not all the relationships are linear.&lt;/p&gt;
 &lt;p&gt;Next, let's focus on correlation between crude mortality rate and all other variables.&lt;/p&gt;
-&lt;h2 id="Pearson's-Correlation-Between-Crude-Mortality-Rate-and-All-Other-Variables"&gt;Pearson's Correlation Between Crude Mortality Rate and All Other Variables&lt;a class="anchor-link" href="#Pearson's-Correlation-Between-Crude-Mortality-Rate-and-All-Other-Variables"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/correlation_crude_mortality_rate_all_other_variables.png" /&gt;&lt;/p&gt;
+&lt;h2 id="pearsons_correlation_between_crude_mortality_rate_and_all_other_variables"&gt;Pearson's Correlation Between Crude Mortality Rate and All Other Variables&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/correlation_crude_mortality_rate_all_other_variables.png" /&gt;&lt;/p&gt;
 &lt;p&gt;From the plot above, we see that &lt;code&gt;GQ Estimates 2016 (count)&lt;/code&gt; has the highest correlation with crude opioid mortality rate. Seeing that population estimate is also one of the variables with relatively high correlation with crude opioid mortality rate, perhaps counties with higher population sizes have higher mortality rates due to opioid overdose.&lt;/p&gt;
-&lt;h2 id="Conclusion-From-Exploratory-Data-Analysis"&gt;Conclusion From Exploratory Data Analysis&lt;a class="anchor-link" href="#Conclusion-From-Exploratory-Data-Analysis"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;It seems as if the the counties with higher opioid overdose mortality rates have the following:&lt;/p&gt;
+&lt;h2 id="conclusion_from_exploratory_data_analysis"&gt;Conclusion From Exploratory Data Analysis&lt;/h2&gt;&lt;p&gt;It seems as if the the counties with higher opioid overdose mortality rates have the following:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Higher GQ estimates&lt;/li&gt;
-&lt;li&gt;Higher population percentage of 45 - 49 year olds&lt;/li&gt;
-&lt;li&gt;Higher population estimates&lt;/li&gt;
-&lt;li&gt;Higher median household income&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Further research could be done to investigate as to why counties that have high GQ estimates would have high opioid overdose mortality rate. Note that GQ estimates represent number of people living in places such as group homes, mental hospitals, correctional facilities, and dormitories.&lt;/p&gt;
+    &lt;li&gt;Higher GQ estimates&lt;/li&gt;
+    &lt;li&gt;Higher population percentage of 45 - 49 year olds&lt;/li&gt;
+    &lt;li&gt;Higher population estimates&lt;/li&gt;
+    &lt;li&gt;Higher median household income&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;Further research could be done to investigate as to why counties that have high GQ estimates would have high opioid overdose mortality rate. Note that GQ estimates represent number of people living in places such as group homes, mental hospitals, correctional facilities, and dormitories.&lt;/p&gt;
 &lt;p&gt;It's surprising to see that counties with higher population percentage of 45 - 49 year olds have higher opioid overdose mortality rates. This is consistent with the fact that a high percentage of people who died of opioid overdose fall in this age group.&lt;/p&gt;
 &lt;p&gt;It's surprising to see that counties with higher income tend to have higher mortality rates caused by opioid overdose.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="Predictions"&gt;Predictions&lt;a class="anchor-link" href="#Predictions"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;To predict opioid overdose mortality rate, I removed county population size estimate. I also converted the &lt;code&gt;GQ Estimates 2016 (count)&lt;/code&gt; variable to percentage relative to population estimate. The reason for these is because these two variables were in absolute counts. Because they were in absolute counts, these variables caused the smaller counties to have predicted opioid overdose mortality rates of zero. This caused issues because just because the county had small population size did not mean that they would necessarily have zero opioid overdose mortality rate. Removing county population size and converting &lt;code&gt;GQ Estimates 2016 (count)&lt;/code&gt; to percentages relative to county population size helped solve this problem.&lt;/p&gt;
+&lt;h1 id="predictions"&gt;Predictions&lt;/h1&gt;&lt;p&gt;To predict opioid overdose mortality rate, I removed county population size estimate. I also converted the &lt;code&gt;GQ Estimates 2016 (count)&lt;/code&gt; variable to percentage relative to population estimate. The reason for these is because these two variables were in absolute counts. Because they were in absolute counts, these variables caused the smaller counties to have predicted opioid overdose mortality rates of zero. This caused issues because just because the county had small population size did not mean that they would necessarily have zero opioid overdose mortality rate. Removing county population size and converting &lt;code&gt;GQ Estimates 2016 (count)&lt;/code&gt; to percentages relative to county population size helped solve this problem.&lt;/p&gt;
 &lt;p&gt;The following is a list of all the variables used to predict county level opioid overdose mortality rate. The description of these variables can be found above.&lt;/p&gt;
 &lt;ol&gt;
-    &lt;li&gt;For a given regression prediction algorithm, do the following:&lt;/li&gt;
     &lt;li&gt;%_pop_chg&lt;/li&gt;
     &lt;li&gt;10_14_years_%&lt;/li&gt;
     &lt;li&gt;15_19_years_%&lt;/li&gt;
@@ -1289,8 +1371,15 @@ The following dataset contains mortality rates and death numbers due to opioid o
     &lt;li&gt; Stochastic Gradient Boosting (Tuned Hyperparameters, sklearn)  &lt;/li&gt;
     &lt;li&gt; Stochastic Gradient Boosting (Default Hyperparameters, xgboost)  &lt;/li&gt;
     &lt;li&gt; Stochastic Gradient Boosting (Tuned Hyperparameters, xgboost)  &lt;/li&gt;
-    &lt;li&gt; Hurdle Approach (xgboost classification and regression)&lt;/li&gt;
-&lt;/ol&gt;&lt;p&gt;For all of the algorithms, I used the same training set and test set. 80% of the data was randomly selected for the training set. The remaining 20% of the data was used for the test set.&lt;/p&gt;
+    &lt;li&gt; Hurdle Model (xgboost classification and regression)&lt;/li&gt;
+&lt;/ol&gt;&lt;h2 id="hurdle_model"&gt;Hurdle Model&lt;/h2&gt;&lt;p&gt;What is the hurdle model? An article from the University of Virginia states the following:&lt;/p&gt;
+&lt;blockquote cite="https://data.library.virginia.edu/getting-started-with-hurdle-models/"&gt;The hurdle model is a two-part model that specifies one process for zero counts and another process for positive counts. The idea is that positive counts occur once a threshold is crossed, or put another way, a hurdle is cleared. If the hurdle is not cleared, then we have a count of 0.&lt;sup&gt;&lt;a href="#fn2" id="ref2"&gt;2&lt;/a&gt;&lt;/sup&gt;
+&lt;/blockquote&gt;&lt;p&gt;The procedure I used for the hurdle model is as follows:&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt;Use XGBoost's classifier to predict whether a county has zero opioid overdose mortality rate&lt;/li&gt;
+    &lt;li&gt;For the counties that are predicted to have greater than zero opioid overdose mortality rate, use XGBoost's regressor to predict the county's opioid overdose mortality rate&lt;/li&gt;
+&lt;/ol&gt;&lt;p&gt;This mimics section 2.6 from &lt;a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/wrcr.20308"&gt;Machine learning and hurdle models for improving regional predictions of stream water acid neutralizing capacity&lt;/a&gt;&lt;sup&gt;&lt;a href="#fn3" id="ref3"&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h2 id="prediction_procedure"&gt;Prediction Procedure&lt;/h2&gt;&lt;p&gt;For all of the algorithms, I used the same training set and test set. 80% of the data was randomly selected for the training set. The remaining 20% of the data was used for the test set.&lt;/p&gt;
 &lt;p&gt;When using default hyperparameters, the following procedure was performed:&lt;/p&gt;
 &lt;ol&gt;
     &lt;li&gt;Use default hyperparameter values to fit data (no cross-validation was used)&lt;/li&gt;
@@ -1299,10 +1388,8 @@ The following dataset contains mortality rates and death numbers due to opioid o
 &lt;ol&gt;
     &lt;li&gt;Tune hyperparameter values using RandomizedSearchCV (1000 iterations) and 5-fold cross-validation to fit the training set&lt;/li&gt;
     &lt;li&gt;Select model that has the lowest RMSE&lt;/li&gt;
-
-Once the best models are selected, I created a bootstrap sampling distribution of the RMSE to obtain an estimate of the distribution of the RMSE and also to perform two-sample t tests to see if the differences between the models were statistically significant. The procedure for the bootstrapping is as follows:
-
-&lt;ol type="A"&gt;
+&lt;/ol&gt;&lt;p&gt;Once the best models are selected, I created a bootstrap sampling distribution of the RMSE to obtain an estimate of the distribution of the RMSE and also to perform two-sample t tests to see if the differences between the models were statistically significant. The procedure for the bootstrapping is as follows:&lt;/p&gt;
+&lt;ol&gt;
     &lt;li&gt;From the dataset, sample counties with replacement 2369 times (80% of the data) to obtain the training set&lt;/li&gt;
     &lt;li&gt;The rest of the data is the test set&lt;/li&gt;
     &lt;li&gt;Fit the training set using the best models&lt;/li&gt;
@@ -1310,51 +1397,20 @@ Once the best models are selected, I created a bootstrap sampling distribution o
     &lt;li&gt;Calculate RMSE&lt;/li&gt;
     &lt;li&gt;Repeat steps one to five B = 10,000 times&lt;/li&gt;
 &lt;/ol&gt;&lt;p&gt;You can see the bootstrap RMSE distributions for all methods below:&lt;/p&gt;
-&lt;h2 id="Bootstrap-RMSE-Distributions-for-All-Methods"&gt;Bootstrap RMSE Distributions for All Methods&lt;a class="anchor-link" href="#Bootstrap-RMSE-Distributions-for-All-Methods"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/bootstrap_hist_all_models.png" /&gt;&lt;/p&gt;
+&lt;h2 id="bootstrap_rmse_distributions_for_all_methods"&gt;Bootstrap RMSE Distributions for All Methods&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/bootstrap_hist_all_models.png" /&gt;&lt;/p&gt;
 &lt;p&gt;You can see that bootstrap RMSE distributions seem to be approximately normal distributions. Hence, I use the two-sample t-test to see if the difference in the means between the model with the lowest RMSE and all other models are statistically significantly different. You can see the results of the hypothesis testing below.&lt;/p&gt;
-&lt;h2 id="Boxplot-of-Bootstrap-RMSE-Distributions-for-All-Methods"&gt;Boxplot of Bootstrap RMSE Distributions for All Methods&lt;a class="anchor-link" href="#Boxplot-of-Bootstrap-RMSE-Distributions-for-All-Methods"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/boxplot_bootstrap_dist.png" /&gt;&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[80]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;t_test_p_values&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;
-
-&lt;div class="prompt output_prompt"&gt;Out[80]:&lt;/div&gt;
-
-
-
-&lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
-&lt;div&gt;
+&lt;h2 id="boxplot_of_bootstrap_rmse_distributions_for_all_methods"&gt;Boxplot of Bootstrap RMSE Distributions for All Methods&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/boxplot_bootstrap_dist.png" /&gt;&lt;/p&gt;
 &lt;style scoped&gt;
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
     .dataframe thead th {
         text-align: right;
     }
-&lt;/style&gt;
-&lt;table border="1" class="dataframe"&gt;
+&lt;/style&gt;&lt;h2 id="table_of_two_sample_t_test_p_values_between_models"&gt;Table of Two-Sample T-Test P-Values Between Models&lt;/h2&gt;&lt;table border="1" class="dataframe"&gt;
   &lt;thead&gt;
     &lt;tr style="text-align: right;"&gt;
       &lt;th&gt;&lt;/th&gt;
@@ -1451,7 +1507,7 @@ Once the best models are selected, I created a bootstrap sampling distribution o
     &lt;tr&gt;
       &lt;th&gt;15&lt;/th&gt;
       &lt;td&gt;Random Forest Regression (Tuned Hyperparameters)&lt;/td&gt;
-      &lt;td&gt;Hurdle Approach (xgboost classification and re...&lt;/td&gt;
+      &lt;td&gt;Hurdle Model (xgboost classification and regre...&lt;/td&gt;
       &lt;td&gt;0.000000e+00&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
@@ -1467,155 +1523,14 @@ Once the best models are selected, I created a bootstrap sampling distribution o
       &lt;td&gt;0.000000e+00&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;You can see from the boxplot of all the models and the table that random forest regression with tuned hyperparameters are the best performing model. The difference between the mean of random forest and all the other models are statistically significant. CART with default parameters seems to be performing the worst. In general, tree-based methods tend to have lower RMSE than the linear models. Also, tuning hyperparameters lowers RMSE.&lt;/p&gt;
-&lt;h2 id="Predicted-vs-Actual-Opioid-Overdose-Mortality-Rate"&gt;Predicted vs Actual Opioid Overdose Mortality Rate&lt;a class="anchor-link" href="#Predicted-vs-Actual-Opioid-Overdose-Mortality-Rate"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/predicted_actual_regression_all_blog.png" /&gt;&lt;/p&gt;
+&lt;/table&gt;&lt;p&gt;You can see from the boxplot of all the models and the table that random forest regression with tuned hyperparameters are the best performing model. The difference between the mean of random forest and all the other models are statistically significant. CART with default parameters seems to be performing the worst. In general, tree-based methods tend to have lower RMSE than the linear models. Also, tuning hyperparameters lowers RMSE.&lt;/p&gt;
+&lt;h2 id="predicted_vs_actual_opioid_overdose_mortality_rate"&gt;Predicted vs Actual Opioid Overdose Mortality Rate&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/predicted_actual_regression_all_blog.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Based on the scatterplots above, we can see that the best performing model, random forest regression with tuned hyperparameters, made conservative predictions to minimize RMSE. However, in terms of using the model, I would actually prefer to use stochastic gradient boosting from XGBoost package with tuned hyperparameters. Although the difference in the means between random forest regression with tuned hyperparameters and stochastic gradient boosting from XGBoost package with tuned hyperparameters are statistically significantly different, it does not seem to be practically different. The difference in the bootstrap RMSE means  is 0.13, which is quite small in quantity (9.25 vs 9.37). In practice, this small difference would not make much difference. However, the predictions from stochastic gradient boosting from XGBoost package with tuned hyperparameters seem to fit the actual opioid overdose mortality rate better.&lt;/p&gt;
-&lt;h2 id="Feature-Importances"&gt;Feature Importances&lt;a class="anchor-link" href="#Feature-Importances"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/feature_importances.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Based on the feature importances, we can see that some of the important features from the top-performing models are &lt;strong&gt;asian_or_pacific_islander_%&lt;/strong&gt;, &lt;strong&gt;american_indian_or_alaska_native_%&lt;/strong&gt;, &lt;strong&gt;Opioid Prescription Rate (per 100)&lt;/strong&gt;, and &lt;strong&gt;45_49_years_%&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id="feature_importances"&gt;Feature Importances&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/feature_importances.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Based on the feature importances, we can see that some of the important features from the top-performing models are &lt;b&gt;asian_or_pacific\_islander\_%&lt;/b&gt;, &lt;b&gt;american_indian_or_alaska\_native\_%&lt;/b&gt;, &lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt;, and &lt;b&gt;45_49\_years\_%&lt;/b&gt;.&lt;/p&gt;
 &lt;p&gt;Can we improve our predictions? Perhaps we can by taking a closer look at the county level population distribution.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="A-Closer-Look-at-the-County-Level-Population-Distribution"&gt;A Closer Look at the County Level Population Distribution&lt;a class="anchor-link" href="#A-Closer-Look-at-the-County-Level-Population-Distribution"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;A closer look at the county level population distribution reveals the following:&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[81]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;population_distribution&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;
-
-&lt;div class="prompt output_prompt"&gt;Out[81]:&lt;/div&gt;
-
-
-
-&lt;div class="output_html rendered_html output_subarea output_execute_result"&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border="1" class="dataframe"&gt;
-  &lt;thead&gt;
-    &lt;tr style="text-align: right;"&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;Population Estimate of All Counties&lt;/th&gt;
-      &lt;th&gt;Population Estimate of Counties with Zero Mortality&lt;/th&gt;
-      &lt;th&gt;Population Estimate of Counties with Greater than Zero Mortality&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;count&lt;/th&gt;
-      &lt;td&gt;2,962&lt;/td&gt;
-      &lt;td&gt;2,261&lt;/td&gt;
-      &lt;td&gt;701&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;mean&lt;/th&gt;
-      &lt;td&gt;108,844&lt;/td&gt;
-      &lt;td&gt;30,427&lt;/td&gt;
-      &lt;td&gt;361,770&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;std&lt;/th&gt;
-      &lt;td&gt;339,283&lt;/td&gt;
-      &lt;td&gt;37,773&lt;/td&gt;
-      &lt;td&gt;631,186&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;min&lt;/th&gt;
-      &lt;td&gt;1,183&lt;/td&gt;
-      &lt;td&gt;1,183&lt;/td&gt;
-      &lt;td&gt;18,646&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;25%&lt;/th&gt;
-      &lt;td&gt;12,949&lt;/td&gt;
-      &lt;td&gt;10,242&lt;/td&gt;
-      &lt;td&gt;91,251&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;50%&lt;/th&gt;
-      &lt;td&gt;28,180&lt;/td&gt;
-      &lt;td&gt;19,920&lt;/td&gt;
-      &lt;td&gt;174,827&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;75%&lt;/th&gt;
-      &lt;td&gt;74,528&lt;/td&gt;
-      &lt;td&gt;37,304&lt;/td&gt;
-      &lt;td&gt;390,918&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;max&lt;/th&gt;
-      &lt;td&gt;10,137,915&lt;/td&gt;
-      &lt;td&gt;849,843&lt;/td&gt;
-      &lt;td&gt;10,137,915&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="a_closer_look_at_the_county_level_population_distribution"&gt;A Closer Look at the County Level Population Distribution&lt;/h1&gt;&lt;p&gt;A closer look at the county level population distribution reveals the following:&lt;/p&gt;
+&lt;p&gt;population_distribution&lt;/p&gt;
 &lt;p&gt;After examining the population estimates, we see the following:&lt;/p&gt;
 &lt;ul&gt;
     &lt;li&gt;Minimum population size for counties with greater than zero mortality rate is 18,646&lt;/li&gt;
@@ -1623,22 +1538,14 @@ Once the best models are selected, I created a bootstrap sampling distribution o
     &lt;li&gt;1,183 counties have zero mortality rate and have population greater than or equal to 18,646&lt;/li&gt;
     &lt;li&gt;701 counties have greater than zero mortality rate and have population greater than or equal to 18,646&lt;/li&gt;
 &lt;/ul&gt;&lt;p&gt;Based on this information, let's remove the 1,078 counties that have population less than 18,646 and redo the prediction analysis using 1,183 counties with zero opioid overdose mortality rate and 701 counties that have opioid overdose mortality rate greater than zero. In total, let's redo the analysis with 1,884 county data instead of 2,962 county data.&lt;/p&gt;
-&lt;h2 id="Boxplot-of-Bootstrap-RMSE-Distributions-for-All-Methods-(Population-&amp;gt;=-18,646)"&gt;Boxplot of Bootstrap RMSE Distributions for All Methods (Population &amp;gt;= 18,646)&lt;a class="anchor-link" href="#Boxplot-of-Bootstrap-RMSE-Distributions-for-All-Methods-(Population-&amp;gt;=-18,646)"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/pop_adj_boxplot_bootstrap_dist.png" /&gt;&lt;/p&gt;
+&lt;h2 id="boxplot_of_bootstrap_rmse_distributions_for_all_methods_population_18646"&gt;Boxplot of Bootstrap RMSE Distributions for All Methods (Population &gt;= 18,646)&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/pop_adj_boxplot_bootstrap_dist.png" /&gt;&lt;/p&gt;
 &lt;p&gt;From the boxplots, we see that the best performing model is stochastic gradient boosting from sklearn package with tuned hyperparameters. The difference of the means is statistically significant between the best performing model and all the other models. However, in terms of practical significance, there seems to not be a very big difference among the top performing models.&lt;/p&gt;
-&lt;h2 id="Predicted-vs-Actual-Opioid-Overdose-Mortality-Rate-(Population-&amp;gt;=-18,646)"&gt;Predicted vs Actual Opioid Overdose Mortality Rate (Population &amp;gt;= 18,646)&lt;a class="anchor-link" href="#Predicted-vs-Actual-Opioid-Overdose-Mortality-Rate-(Population-&amp;gt;=-18,646)"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/pop_adj_predicted_actual_regression_all_blog.png" /&gt;&lt;/p&gt;
+&lt;h2 id="predicted_vs_actual_opioid_overdose_mortality_rate_population_18646"&gt;Predicted vs Actual Opioid Overdose Mortality Rate (Population &gt;= 18,646)&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/pop_adj_predicted_actual_regression_all_blog.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Based on the scatterplots, I would conclude that the fourth best performing model in terms of RMSE, stochastic gradient boosting from XGBoost package with tuned hyperparameters seem to make the best predictions.&lt;/p&gt;
-&lt;h2 id="Feature-Importances-(Population-&amp;gt;=-18,646)"&gt;Feature Importances (Population &amp;gt;= 18,646)&lt;a class="anchor-link" href="#Feature-Importances-(Population-&amp;gt;=-18,646)"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/pop_adj_feature_importances.png" /&gt;&lt;/p&gt;
-&lt;p&gt;Based on the feature importances, we can see that some of the important features from the top-performing models are &lt;strong&gt;american_indian_or_alaska_native_%&lt;/strong&gt;, &lt;strong&gt;asian_or_pacific_islander_%&lt;/strong&gt;, &lt;strong&gt;45_49_years_%&lt;/strong&gt;, and &lt;strong&gt;Opioid Prescription Rate (per 100)&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id="feature_importances_population_18646"&gt;Feature Importances (Population &gt;= 18,646)&lt;/h2&gt;&lt;p&gt;&lt;img width="650" src="images/pop_adj_feature_importances.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Based on the feature importances, we can see that some of the important features from the top-performing models are &lt;b&gt;american_indian_or_alaska\_native\_%&lt;/b&gt;, &lt;b&gt;asian_or_pacific\_islander\_%&lt;/b&gt;, &lt;b&gt;45_49\_years\_%&lt;/b&gt;, and &lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt;.&lt;/p&gt;
 &lt;p&gt;Overall results after removing small counties with zero opioid overdose mortality rate does not seem to significantly improve predictions. This can be because we do not have enough data.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="Conclusion-from-Prediction-Analysis"&gt;Conclusion from Prediction Analysis&lt;a class="anchor-link" href="#Conclusion-from-Prediction-Analysis"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;After considering the prediction analysis, I recommend XGBoost's stochastic gradient boosting model with tuned hyperparameters as the model to use to make predictions. Even though XGBoost's stochastic gradient boosting model was the fourth best performing model, the difference in the RMSE means between this model and the best performing model is not very different practically. XGBoost's stochastic gradient boosting model seems to make the best fitting predictions based on the scatterplots above.&lt;/p&gt;
+&lt;h1 id="conclusion_from_prediction_analysis"&gt;Conclusion from Prediction Analysis&lt;/h1&gt;&lt;p&gt;After considering the prediction analysis, I recommend XGBoost's stochastic gradient boosting model with tuned hyperparameters as the model to use to make predictions. Even though XGBoost's stochastic gradient boosting model was the fourth best performing model, the difference in the RMSE means between this model and the best performing model is not very different practically. XGBoost's stochastic gradient boosting model seems to make the best fitting predictions based on the scatterplots above.&lt;/p&gt;
 &lt;p&gt;We have now obtained a tool that we can use to predict a county's opioid overdose mortality rate given 36 variables about the county. This tool is useful for the following reasons:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Once we predict a county's opioid overdose mortality rate, we can then focus on the counties that are predicted to have high opioid overdose mortality rate. This will help us more efficiently allocate resources to combat this epidemic.&lt;/li&gt;
@@ -1647,22 +1554,19 @@ Once the best models are selected, I created a bootstrap sampling distribution o
 &lt;/ol&gt;
 &lt;p&gt;There is also one finding that is quite surprising. There is no one predictor variable that contribute overwhelmingly to opioid overdose mortality rate. Poverty rate, median household income, and unemployment rates are not the most important predictors in opioid overdose mortality rate. Instead, what we find are variables like the following:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;american_indian_or_alaska_native_%&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;asian_or_pacific_islander_%&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;45_49_years_%&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Opioid Prescription Rate (per 100)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;american_indian_or_alaska\_native\_%&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;asian_or_pacific\_islander\_%&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;45_49\_years\_%&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Opioid Prescription Rate (per 100)&lt;/strong&gt; seems to make sense in that higher &lt;strong&gt;Opioid Prescription Rate (per 100)&lt;/strong&gt; would lead to higher opioid overdose mortality rate. However, it is surprising to see the other three predictor variables as being the top features in predicting opioid overdose mortality rate.&lt;/p&gt;
-&lt;h1 id="Further-Research"&gt;Further Research&lt;a class="anchor-link" href="#Further-Research"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Findings from this data analysis can be used to investigate some causes of opioid addiction and opioid overdose mortality rate. Further investigation should also be done to see why &lt;strong&gt;american_indian_or_alaska_native_%&lt;/strong&gt;, &lt;strong&gt;asian_or_pacific_islander_%&lt;/strong&gt;, and &lt;strong&gt;45_49_years_%&lt;/strong&gt; play an important role in predicting opioid overdose mortality rate.&lt;/p&gt;
+&lt;p&gt;&amp;lt;/b&amp;gt;Opioid Prescription Rate (per 100)&amp;lt;/b&amp;gt; seems to make sense in that higher &lt;b&gt;Opioid Prescription Rate (per 100)&lt;/b&gt; would lead to higher opioid overdose mortality rate. However, it is surprising to see the other three predictor variables as being the top features in predicting opioid overdose mortality rate.&lt;/p&gt;
+&lt;h1 id="further_research"&gt;Further Research&lt;/h1&gt;&lt;p&gt;Findings from this data analysis can be used to investigate some causes of opioid addiction and opioid overdose mortality rate. Further investigation should also be done to see why &lt;b&gt;american_indian_or_alaska\_native\_%&lt;/b&gt;, &lt;b&gt;asian_or_pacific\_islander\_%&lt;/b&gt;, and &lt;b&gt;45_49\_years\_%&lt;/b&gt; play an important role in predicting opioid overdose mortality rate.&lt;/p&gt;
+&lt;h1 id="references"&gt;References&lt;/h1&gt;
+&lt;p id="fn1"&gt;1. https://en.wikipedia.org/wiki/Opioid_epidemic&lt;a href="#ref1" title="Jump back to footnote 1 in the text."&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;p id="fn2"&gt;2. https://data.library.virginia.edu/getting-started-with-hurdle-models/&lt;a href="#ref2" title="Jump back to footnote 2 in the text."&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;p id="fn3"&gt;3. https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/wrcr.20308&lt;a href="#ref3" title="Jump back to footnote 3 in the text."&gt;↩&lt;/a&gt;&lt;/p&gt;
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="Links"&gt;Links&lt;a class="anchor-link" href="#Links"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;You can find more details regarding this data analysis from the following links:&lt;/p&gt;
+&lt;h1 id="links"&gt;Links to Code&lt;/h1&gt;&lt;p&gt;You can find code and more details regarding this data analysis from the following links:&lt;/p&gt;
 &lt;ul&gt;
     &lt;li&gt;&lt;a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/data_wrangling.ipynb"&gt;Data Wrangling&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/data_storytelling.ipynb"&gt;Data Storytelling&lt;/a&gt;&lt;/li&gt;
@@ -1670,6 +1574,10 @@ Once the best models are selected, I created a bootstrap sampling distribution o
     &lt;li&gt;&lt;a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/data_wrangling.ipynb"&gt;Data Wrangling&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/in_depth_analysis_machine_learning.ipynb"&gt;Prediction Analysis (In-Depth Analysis, Machine Learning)&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/population_adjusted.ipynb"&gt;Population Adjusted Prediction Analysis (In-Depth Analysis, Machine Learning)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;h1 id="special_thanks"&gt;Special Thanks&lt;/h1&gt;&lt;ul&gt;
+    &lt;li&gt;Special thanks to &lt;a href="https://www.linkedin.com/in/tommy-blanchard-131686126/"&gt;Tommy Blanchard&lt;/a&gt; for mentoring me throughout this project&lt;/li&gt;
+    &lt;li&gt;Special thanks to &lt;a href="https://www.linkedin.com/in/peterhbyullee/"&gt;Peter Lee&lt;/a&gt; for helping me with the presentation slides&lt;/li&gt;
+    &lt;li&gt;Special thanks to &lt;a href="https://www.linkedin.com/in/abraham-choe-b132a424/"&gt;Abraham Choe&lt;/a&gt; for helping me with the blog layout&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
