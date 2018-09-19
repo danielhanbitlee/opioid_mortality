@@ -9,9 +9,9 @@
 */
 
 /* Imports */
-@import url("https://raw.githubusercontent.com/danielhanbitlee/opioid_mortality/master/theme/css/reset.css");
-@import url("https://raw.githubusercontent.com/danielhanbitlee/opioid_mortality/master/theme/css/pygment.css");
-@import url("https://raw.githubusercontent.com/danielhanbitlee/opioid_mortality/master/theme/css/typogrify.css");
+@import url(https://raw.githubusercontent.com/danielhanbitlee/opioid_mortality/master/theme/css/reset.css);
+@import url(https://raw.githubusercontent.com/danielhanbitlee/opioid_mortality/master/theme/css/pygment.css);
+@import url(https://raw.githubusercontent.com/danielhanbitlee/opioid_mortality/master/theme/css/typogrify.css);
 @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin);
 
 /***** Global *****/
