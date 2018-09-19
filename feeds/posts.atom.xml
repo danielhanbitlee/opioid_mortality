@@ -1027,7 +1027,6 @@ body {
 &lt;/style&gt;&lt;div class="Container-1"&gt;
     &lt;div class="Left"&gt;
     &lt;h1&gt;Table of Contents&lt;/h1&gt;
-Test
     &lt;ol&gt;
         &lt;li&gt;&lt;a href="#presentation_slides"&gt;Presentation Slides&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href="#abstract"&gt;Abstract&lt;/a&gt;&lt;/li&gt;
@@ -1716,8 +1715,6 @@ You can find code and more details regarding this data analysis from the followi
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;div class="Container-2"&gt;
     &lt;div class="Container-2-box"&gt;
-        &lt;h3&gt;Box Twelve&lt;/h3&gt;
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec elit urna. Suspendisse a erat a nibh imperdiet fermentum. In eleifend ultricies massa, id pretium purus convallis nec. &lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
