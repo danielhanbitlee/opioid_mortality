@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Opioid Mortality Rate - Daniel Lee</title>
+        <link rel="stylesheet" href="https://danielhanbitlee.github.io/opioid_mortality/theme/css/main.css" />
+        <link href="https://danielhanbitlee.github.io/opioid_mortality/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Opioid Mortality Rate Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://danielhanbitlee.github.io/opioid_mortality/">Opioid Mortality Rate </a></h1>
+                <nav><ul>
+                    <li><a href="https://danielhanbitlee.github.io/opioid_mortality/category/posts.html">posts</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://danielhanbitlee.github.io/opioid_mortality/predicting_opioid_mortality_rate_blog.html">Predicting US County Level Opioid Overdose Mortality Rate</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-09-15T20:00:00-07:00">
+                Published: Sat 15 September 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://danielhanbitlee.github.io/opioid_mortality/author/daniel-lee.html">Daniel Lee</a>
+        </address>
+<p>In <a href="https://danielhanbitlee.github.io/opioid_mortality/category/posts.html">posts</a>.</p>
+<p>tags: <a href="https://danielhanbitlee.github.io/opioid_mortality/tag/python.html">python</a> </p>
+</footer><!-- /.post-info --><style type="text/css">/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI colors. */
+.ansibold {
+  font-weight: bold;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected {
+  border-color: #ababab;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  div.cell.selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell > div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area > div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area > div.highlight > pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the <head> if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  padding: 0.4em;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+.rendered_html pre,
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+.rendered_html td,
+
+
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell > div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+<style type="text/css">
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<style>
+.lower-alpha {
+   list-style-type: lower-alpha;
+}
+body {
+    overflow-x: hidden;
+}
+/*Just removing default browser padding/margin*/
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+.Container-1 {
+    display: flex;
+    overflow: hidden;
+    height: 100vh;
+    margin-top: -100px;
+    padding-top: 100px;
+    position: relative;
+    width: 100%;
+    backface-visibility: hidden;
+    will-change: overflow;
+    flex-wrap: wrap;
+}
+.Container-2 {
+    display: flex;
+}
+.Container-2-box {
+    flex-basis: 100%;
+}
+.Left,
+.Middle {
+    overflow: auto;
+    height: auto;
+    padding: .5rem;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+}
+.Left::-webkit-scrollbar,
+.Middle::-webkit-scrollbar {
+    display: none;
+}
+.Left {
+    width: 12.5rem;
+}
+.Middle {
+    flex: 1;
+}
+</style><div class="Container-1">
+    <div class="Left">
+    <h1>Table of Contents</h1>
+    <ol>
+        <li><a href="#presentation_slides">Presentation Slides</a></li>
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#what_is_the_opioid_epidemic">What is the opioid epidemic?</a>
+            <ol type="a" class="lower-alpha">
+                <li><a href="#annual_cause_of_death_by_opioid_overdose">Annual Cause of Death by Opioid Overdose</a></li>
+                <li><a href="#number_of_deaths_by_demographic_factors_1999_2016">Number of Deaths by Demographic Factors 1999 - 2016</a></li>
+            </ol>
+        </li>
+        <li><a href="#reading_between_the_numbers_why_should_we_care">Reading Between the Numbers - Why Should We Care?</a></li>
+        <li><a href="#living_with_an_opioid_addiction">Living with an Opioid Addiction</a></li>
+        <li><a href="#usa_by_opioid_overdose_mortality_rate_2016">USA by Opioid Overdose Mortality Rate, 2016</a>
+            <ol type="a" class="lower-alpha">
+                <li><a href="#top_ten_counties_with_highest_mortality_rate_caused_by_opioid_overdose_in_2016">Top Ten Counties with Highest Mortality Rate Caused by Opioid Overdose in 2016</a></li>
+            </ol>
+        </li>
+        <li><a href="#why_predict_opioid_overdose_mortality_rate">Why Predict Opioid Overdose Mortality Rate?</a></li>
+        <li><a href="#datasets">Datasets</a></li>
+        <li><a href="#variables">Variables</a></li>
+        <li><a href="#exploratory_data_analysis">Exploratory Data Analysis</a>
+            <ol type="a" class="lower-alpha">
+                <li><a href="#distribution_of_county_level_opioid_overdose_mortality_rate">Distribution of County Level Opioid Overdose Mortality Rate</a></li>
+                <li><a href="#distribution_of_county_level_opioid_overdose_mortality_rate_opioid_overdose_moratality_rate_greater_than_zero">Distribution of County Level Opioid Overdose Mortality Rate (Opioid Overdose Mortality Rate Greater Than Zero)</a></li>
+                <li><a href="#violin_plots_of_all_variables_except_opioid_overdose_mortality_rate">Violin Plots of All Variables Except Opioid Overdose Mortality Rate</a></li>
+                <li><a href="#correlation_heat_map_of_all_the_variables">Correlation Heat Map of All the Variables</a></li>
+                <li><a href="#top_12_correlation_magnitude_variable_pairs">Top 12 Correlation Magnitude Variable Pairs</a></li>
+                <li><a href="#pearsons_correlation_between_crude_mortality_rate_and_all_other_variables">Pearson's Correlation Between Crude Mortality Rate and All Other Variables</a></li>
+                <li><a href="#conclusion_from_exploratory_data_analysis">Conclusion From Exploratory Data Analysis</a></li>
+            </ol>
+        </li>
+        <li><a href="#predictions">Predictions</a>
+            <ol type="a" class="lower-alpha">
+                <li><a href="#hurdle_model">Hurdle Model</a></li>
+                <li><a href="#prediction_procedure">Prediction Procedure</h2>                
+                <li><a href="#bootstrap_rmse_distributions_for_all_methods">Bootstrap RMSE Distributions for All Methods</a></li>
+                <li><a href="#boxplot_of_bootstrap_rmse_distributions_for_all_methods">Boxplot of Bootstrap RMSE Distributions for All Methods</a></li>
+                <li><a href="#table_of_two_sample_t_test_p_values_between_models">Table of Two-Sample T-Test P-Values Between Models</a></li>                
+                <li><a href="#predicted_vs_actual_opioid_overdose_mortality_rate">Predicted vs Actual Opioid Overdose Mortality Rate</a></li>
+                <li><a href="#feature_importances">Feature Importances</a></li>
+            </ol>
+        </li>
+        <li><a href="#a_closer_look_at_the_county_level_population_distribution">A Closer Look at the County Level Population Distribution</a>
+            <ol type="a" class="lower-alpha">
+                <li><a href="#boxplot_of_bootstrap_rmse_distributions_for_all_methods_population_18646">Boxplot of Bootstrap RMSE Distributions for All Methods (Population >= 18,646)</a></li>
+                <li><a href="#predicted_vs_actual_opioid_overdose_mortality_rate_population_18646">Predicted vs Actual Opioid Overdose Mortality Rate (Population >= 18,646)</a></li>
+                <li><a href="#feature_importances_population_18646">Feature Importances (Population >= 18,646)</a></li>
+            </ol>
+        </li>
+        <li><a href="#conclusion_from_prediction_analysis">Conclusion from Prediction Analysis</a></li>
+        <li><a href="#further_research">Further Research</a></li>
+        <li><a href="#references">References</a></li>
+        <li><a href="#links">Links</a></li>
+        <li><a href="#special_thanks">Special Thanks</a></li>
+    </ol>
+</div><div class="Middle">
+<h1 id="presentation_slides">Presentation Slides</h1>
+
+
+<a href="https://danielhanbitlee.github.io/Springboard/capstone_project/#/">Full Screen Presentation Slides</a>
+
+<embed src="https://danielhanbitlee.github.io/Springboard/capstone_project/#/" style="width:650px; height: 478.94736842105266px;">
+
+<h1 id="abstract">Abstract</h1>
+
+Since America is in the midst of the opioid epidemic, there is a greater urgency to investigate the cause of the problem. To help with this, I performed exploratory data analysis and looked into predicting the 2016 US county opioid overdose mortality rate given 35 different predictor variables. I believe that if we can make reasonable predictions of county level opioid overdose mortality rate, we can focus on the counties that are predicted to have high opioid overdose mortality rate. This will help us to make better use of our resources as well as study further to help find the cause of the problem. To make predictions, I used 18 different algorithms. In terms of root mean squared error (RMSE), the best model is random forest regression with tuned hyperparameters, which had a mean bootstrap RMSE of 9.25 deaths per 100,000 people. In terms of the fit to the data, the best model seemed to be XGBoost's stochastic gradient descent with tuned parameters, which had a mean bootstrap RMSE of 9.37 deaths per 100,000 people. With this tool, we can now predict any given county's opioid overdose mortality rate. Further investigation should be performed to look into why certain demographic information, such as percentage of county's population who are American Indian or Alaska Native and percentage of county population who are between 45 to 49 years old, plays an important role in predictions.
+
+<h1 id="what_is_the_opioid_epidemic">What is the opioid epidemic?</h1>
+
+Wikipedia defines the opioid epidemic as the following:
+
+<blockquote cite="https://en.wikipedia.org/wiki/Opioid_epidemic">
+The opioid epidemic or opioid crisis is the rapid increase in the use of prescription and non-prescription opioid drugs  in the United States and Canada beginning in the late 1990s and continuing throughout the next two decades. Opioids are a diverse class of moderately strong painkillers, including oxycodone (commonly sold under the trade names OxyContin and Percocet), hydrocodone (Vicodin), and a very strong painkiller, fentanyl, which is synthesized to resemble other opiates such as opium-derived morphine and heroin.<sup><a href="#fn1" id="ref1">1</a></sup>
+</blockquote>
+
+<h3>From 1999 to 2016 in America, the increase in deaths due to opioid overdose increased by 425%, from 8,050 deaths in 1999 to 42,249 deaths in 2016. That's over four times the increase in 17 years.</h3>
+
+<h2 id="annual_cause_of_death_by_opioid_overdose">Annual Cause of Death by Opioid Overdose</h2>
+<img width="650" src="images/annual_deaths_caused_by_opioid_overdose.png" />
+
+<h2 id="number_of_deaths_by_demographic_factors_1999_2016">Number of Deaths by Demographic Factors 1999 - 2016</h2>
+
+<img width="650" src="images/who_are_the_victims.png" />
+
+From the bar charts above, we see some surprising and disturbing numbers:
+
+<ul>
+    <li>Almost 90% of the deaths caused by opioid overdose are whites</li>
+    <li>66% of the deaths are male</li>
+    <li>48% of deaths are from ages 25-54</li>
+</ul>
+
+<h1 id="reading_between_the_numbers_why_should_we_care">Reading Between the Numbers - Why Should We Care?</h1>
+
+Many are dying because of opioid overdose. But it's not just death. Many people that are not represented in these death numbers are struggling with opioid addiction. Not only does opioid addiction destroy the health of the addicted individual, but it also negatively impacts the lives of the addicted person's loved ones, his or her families, and, ultimately, the communities at large.
+
+Addiction to opioids, like any other addictions, leads to financial problems, health problems, lack of self control, relational difficulties, and ultimately destroys every aspect of the person, and the end result is death. Watch the video below of the story of Amy and her struggle with opioid addiction to see a glimpse of the struggles that come with opioid addiction.
+
+<h2 id="living_with_an_opioid_addiction">Living with an Opioid Addiction</h2>
+
+<iframe style="margin-top:20px; margin-left: auto; margin-right: auto" width="420" height="315" src="https://www.youtube.com/embed/VpEQaa6jzUU">
+</iframe>
+
+<h1 id="usa_by_opioid_overdose_mortality_rate_2016">USA by Opioid Overdose Mortality Rate, 2016</h1>
+
+Below, we can see the opioid mortality rates by counties across United States. It seems that midwest and the east cost regions have high concentrations of opioid overdose mortality rates. 2,261 counties have zero deaths due to opioid overdose per 100,000 people. They are colored white in the map below. 701 counties have greater than zero opioid mortality rates.
+
+<img width="650" src="images/newplot.png" />
+
+<h2 id="top_ten_counties_with_highest_mortality_rate_caused_by_opioid_overdose_in_2016">Top Ten Counties with Highest Mortality Rate Caused by Opioid Overdose in 2016</h2>
+
+<img width="650" src="images/top_ten_counties_highest_opioid_mortality.png" />
+
+Based on the map and the bar plot, we see that <b>Harrison, KY</b> is the county that had the highest mortality rate per 100,000 people caused by opioid overdose with <b>118 deaths per 100,000 people due to opioid overdose</b>. That is <b>0.118% of all the people in Harrison County dying because of opioid overdose</b>. In terms of state, we see that <b>West Virginia</b> has five counties in the top ten highest mortality rate per 100,000 people caused by opioid overdose.
+
+<h1 id="why_predict_opioid_overdose_mortality_rate">Why Predict Opioid Overdose Mortality Rate?</h1>
+
+To help solve the opioid addiction crisis, it is beneficial to predict which counties in the US will have high opioid mortality rates based on variables such as county's median household income, unemployment rate, poverty rate estimate, and opioid prescription rate by health care providers. In total, there are 35 variables used to make the predictions (explained in detail later).
+
+Once we predict opioid mortality rates for the counties, we can focus on the counties that are predicted to have high mortality rates to better channel our energy and resources in fighting this epidemic. We can also use these predictions to explore potential causes of opioid overdose. In short, predicting counties' opioid mortality rate will allow us to fight this epidemic more effectively.
+
+<h1 id="datasets">Datasets</h1>
+
+I gathered the following nine datasets from the following sources and combined them into one dataframe: 
+
+<ol>
+    <li><a href="https://www.cdc.gov/drugoverdose/maps/rxcounty2016.html">US County Opioid Prescription Rates 2016</a></li>
+    <li><a href="https://www.ers.usda.gov/webdocs/DataFiles/48747/Education.xls?v=43125">County Level Education Data 2016</a></li>
+    <li><a href="https://www.ers.usda.gov/webdocs/DataFiles/48747/PopulationEstimates.xls?v=43209">County Level Population Estimates Data 2016</a></li>
+    <li><a href="https://www.ers.usda.gov/webdocs/DataFiles/48747/PovertyEstimates.xls?v=43125">County Level Poverty Estimates Data 2016</a></li>
+    <li><a href="https://www.ers.usda.gov/webdocs/DataFiles/48747/Unemployment.xls?v=43244">County Level Unemployment Rate Data 2016</a></li>
+    <li><a href="https://raw.githubusercontent.com/danielhanbitlee/Springboard/master/capstone_project/data/2016.txt">Opioid Overdose Mortality Rate 2016</a>
+        <ul>
+            <li>Original data was obtained from <a href="https://wonder.cdc.gov/controller/saved/D77/D39F042">this query</a> from CDC Wonder website. The dataset was saved on github for easy access.</li>
+            <li>Note that statistics representing zero to nine death counts are suppressed at the region, county, and state level.</li>
+            <li>Counties with suppressed statistics are assumed to have zero mortality rate, since the number of deaths tend to be negligible when compared to the county population size.
+        </ul>
+    </li>
+    <li><a href="https://raw.githubusercontent.com/danielhanbitlee/Springboard/master/capstone_project/data/overall_death_rate_2016.txt">Overall Death Rate (All Causes) 2016</a>
+        <ul>
+            <li>Original data was obtained from <a href="https://wonder.cdc.gov/controller/saved/D77/D41F026">this query</a> from CDC Wonder website. The dataset was saved on github for easy access.</li>
+        </ul>
+    </li>
+    <li><a href="https://raw.githubusercontent.com/danielhanbitlee/Springboard/master/capstone_project/data/county_race_2016.txt">County Level Race Data 2016</a>
+        <ul>
+            <li>Original data was obtained from <a href="https://wonder.cdc.gov/controller/saved/D134/D41F352">this query</a> from CDC Wonder website. The dataset was saved on github for easy access.</li>
+        </ul>
+    </li>
+    <li><a href="https://raw.githubusercontent.com/danielhanbitlee/Springboard/master/capstone_project/data/county_age_2016.txt">County Level Age Data 2016</a>
+        <ul>
+            <li>Original data was obtained from <a href="https://wonder.cdc.gov/controller/saved/D134/D41F353">this query</a> from CDC Wonder website. The dataset was saved on github for easy access.</li>
+        </ul>
+    </li>
+</ol>
+The following dataset contains mortality rates and death numbers due to opioid overdose from 1999 to 2016. This data is not divided by counties. However, it includes columns that contain age-group, ethnicity, and gender. This data will be used primarily for visualization purposes.
+<ul>
+    <li><a href="https://raw.githubusercontent.com/danielhanbitlee/Springboard/master/capstone_project/data/Opioid%20Overdose%20Deaths.txt">Opioid Overdose Mortality Rates 1999 - 2016</a>
+        <ul>
+            <li>Original data was obtained from <a href="https://wonder.cdc.gov/controller/saved/D77/D39F124">this query</a> from CDC Wonder website. The dataset was saved on github for easy access.</li>
+        </ul>
+    </li>
+</ul>
+
+From 3147 counties, I remove all the missing data. After removing the missing data, I have left over 2962 county data and 40 columns. More details regarding data wrangling can be found [here](https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/data_wrangling.ipynb).
+
+<h1 id="variables">Variables</h1>
+
+The following are the variables included in the main dataset that is used for analysis. In bold are the variable names.
+
+* <b>10\_14\_years\_%</b> - Estimated percent of population in county that are between 10 and 14 years of age in 2016
+
+* <b>15\_19\_years\_%</b> - Estimated percent of population in county that are between 15 and 19 years of age in 2016
+
+* <b>1\_4\_years\_%</b> - Estimated percent of population in county that are between 1 and 4 years of age in 2016
+
+* <b>20\_24\_years\_%</b> - Estimated percent of population in county that are between 20 and 24 years of age in 2016
+
+* <b>25\_29\_years\_%</b> - Estimated percent of population in county that are between 25 and 29 years of age in 2016
+
+* <b>30\_34\_years\_%</b> - Estimated percent of population in county that are between 30 and 34 years of age in 2016
+
+* <b>35\_39\_years\_%</b> - Estimated percent of population in county that are between 35 and 39 years of age in 2016
+
+* <b>40\_44\_years\_%</b> - Estimated percent of population in county that are between 40 and 44 years of age in 2016
+
+* <b>45\_49\_years\_%</b> - Estimated percent of population in county that are between 45 and 49 years of age in 2016
+
+* <b>50\_54\_years\_%</b> - Estimated percent of population in county that are between 50 and 54 years of age in 2016
+
+* <b>55\_59\_years\_%</b> - Estimated percent of population in county that are between 55 and 59 years of age in 2016
+
+* <b>5\_9\_years\_%</b> - Estimated percent of population in county that are between 5 and 9 years of age in 2016
+
+* <b>60\_64\_years\_%</b> - Estimated percent of population in county that are between 60 and 64 years of age in 2016
+
+* <b>65\_69\_years\_%</b> - Estimated percent of population in county that are between 65 and 69 years of age in 2016
+
+* <b>70\_74\_years\_%</b> - Estimated percent of population in county that are between 70 and 74 years of age in 2016
+
+* <b>75\_79\_years\_%</b> - Estimated percent of population in county that are between 75 and 79 years of age in 2016
+
+* <b>80\_84\_years\_%</b> - Estimated percent of population in county that are between 80 and 84 years of age in 2016
+
+* <b>85+\_years\_%</b> - Estimated percent of population in county that are 85 years old and older in 2016
+
+* <b>All Other Death Rate 2016 (per 100,000)</b> - 2016 county death rate from all causes excluding opioid overdose
+
+* <b>american\_indian\_or\_alaska\_native\_%</b> - Estimated percent of population in county that are American Indian or Alaska Native in 2016
+
+* <b>asian\_or\_pacific\_islander\_%</b> - Estimated percent of population in county that are Asian or Pacific Islander in 2016
+
+* <b>Birth Rate 2016 (per 100)</b> - Birth rate in period 7/1/2015 to 6/30/2016 (per 1000 people)    
+
+* <b>black\_or\_african\_american\_%</b> - Estimated percent of population in county that are Black or African American in 2016
+
+* <b>county</b> - County's name 
+
+* <b>county\_state</b> - County's name and state the county is located in 
+
+* <b>Crude Opioid Mortality Rate (per 100,000)</b> - Estimated rate for deaths caused by opioid overdose in the county for 2016 (per 100,000 people)
+    * Specifically, the types of drug-related deaths include the following:
+        * Drug poisonings (overdose)
+        * Unintentional
+        * Suicide
+        * Homicide
+        * Undetermined
+    * The specific drugs included in the death rates are the following:
+        * Opium
+        * Heroin
+        * Other opioids
+        * Methadone
+        * Other synthetic narcotics
+        * Other and unspecified narcotics  
+
+* <b>Domestic Migration Rate 2016 (per 100)</b> - Net domestic migration rate in period 7/1/2015 to 6/30/2016 (per 1000 people)   
+
+* <b>fips\_code</b> - County's unique code  
+
+* <b>GQ Estimates 2016 (count)</b> - 7/1/2016 Group Quarters total population estimate (number of people)
+
+    * all people not living in housing units (house, apartment, mobile home, rented rooms)
+    * e.g. people living in correctional facilities, nursing homes, mental hospitals, dormitories, military barracks, or shelters  
+
+* <b>International Migration Rate 2016 (per 100)</b> - Net international migration rate in period 7/1/2015 to 6/30/2016 (per 1000 people)
+
+* <b>less\_than\_1\_year\_%</b> - Estimated percent of population in county that are less than one year old in 2016
+
+* <b>Median Household Income 2016 (dollars)</b> - Estimate of median household Income, 2016 (in dollars)
+
+* <b>Opioid Prescription Rate (per 100)</b> - Prescription rate for opioids for the county (per 100 people)   
+
+* <b>Estimated percent with High School Diploma Only (%)</b> - Estimated percent of people with high school diploma only (%)
+
+* <b>Population Change 2016 (count)</b> - Net change in resident total population 7/1/2015 to 7/1/2016 (number of people)
+
+* <b>Population Estimate 2016 (count)</b> - Estimated population for the county in 2016    
+
+* <b>Poverty Estimated percentage 2016 (%)</b> - Estimated percent of people of all ages in poverty 2016 (%)   
+
+* <b>state</b> - State the county is in    
+
+* <b>Unemployment Rate 2016 (per 100)</b> - Unemployment rate, 2016 (per 100 people)
+
+* <b>white\_%</b> - Estimated percent of population in county that are White in 2016
+
+<h1 id="exploratory_data_analysis">Exploratory Data Analysis</h1>
+
+Let's do some exploratory data analysis before we make predictions.
+
+First, let's examine the distribution of the county level opioid overdose mortality rate.
+
+<h2 id="distribution_of_county_level_opioid_overdose_mortality_rate">Distribution of County Level Opioid Overdose Mortality Rate</h2>
+
+<img width="650" src="images/distribution_of_opioid_overdose_mortality_rate.png" />
+
+Here, we see that the distribution is skewed right. That is, there are a lot of counties with zero opioid overdose mortality rate. In fact, there are 2,261 counties out of 2,962 counties that have zero opioid overdose mortality rate (76.3 %). Let's now remove all the counties with zero opioid overdose mortality rate and reexamine the distribution of the county level opioid overdose mortality rate.
+
+<h2 id="distribution_of_county_level_opioid_overdose_mortality_rate_opioid_overdose_moratality_rate_greater_than_zero">Distribution of County Level Opioid Overdose Mortality Rate (Opioid Overdose Mortality Rate Greater Than Zero)</h2>
+
+<img width="650" src="images/distribution_of_opioid_overdose_mortality_rate_greater_than_zero.png" />
+
+When we remove all the counties with zero opioid overdose mortality rate, we see that the distribution is still right-skewed. The median for the opioid overdose mortality rate is 16.5 people per 100,000 people. 90th percentile for the opioid overdose mortality rate is 35.9 people per 100,000 people.
+
+Let's now look at the distributions of all other variables except opioid mortality rate.
+
+<h2 id="violin_plots_of_all_variables_except_opioid_overdose_mortality_rate">Violin Plots of All Variables Except Opioid Overdose Mortality Rate</h2>
+
+<img width="650" src="images/violin_plots_all_other_variables.png" />
+
+<h2 id="correlation_heat_map_of_all_the_variables">Correlation Heat Map of All the Variables</h2>
+
+<img width="650" src="images/correlation_heat_map.png" />
+
+Let's examine the top twelve variable pairs with the largest correlation magnitude (absolute correlation value). That is, take the absolute value of all the correlation values and select the twelve that are closest to one.
+
+<h2 id="top_12_correlation_magnitude_variable_pairs">Top 12 Correlation Magnitude Variable Pairs</h2>
+
+<img width="650" src="images/top_twelve_correlation_magnitude_pairs.png" />
+
+From the above correlation heat map and the scatter plot, we can see the variables that have high correlation values. Also, it's important to note that not all the relationships are linear.
+
+Next, let's focus on correlation between crude mortality rate and all other variables.
+
+<h2 id="pearsons_correlation_between_crude_mortality_rate_and_all_other_variables">Pearson's Correlation Between Crude Mortality Rate and All Other Variables</h2>
+
+<img width="650" src="images/correlation_crude_mortality_rate_all_other_variables.png" />
+
+From the plot above, we see that `GQ Estimates 2016 (count)` has the highest correlation with crude opioid mortality rate. Seeing that population estimate is also one of the variables with relatively high correlation with crude opioid mortality rate, perhaps counties with higher population sizes have higher mortality rates due to opioid overdose.
+
+<h2 id="conclusion_from_exploratory_data_analysis">Conclusion From Exploratory Data Analysis</h2>
+
+It seems as if the the counties with higher opioid overdose mortality rates have the following:
+
+<ul>
+    <li>Higher GQ estimates</li>
+    <li>Higher population percentage of 45 - 49 year olds</li>
+    <li>Higher population estimates</li>
+    <li>Higher median household income</li>
+</ul>
+
+Further research could be done to investigate as to why counties that have high GQ estimates would have high opioid overdose mortality rate. Note that GQ estimates represent number of people living in places such as group homes, mental hospitals, correctional facilities, and dormitories. 
+
+It's surprising to see that counties with higher population percentage of 45 - 49 year olds have higher opioid overdose mortality rates. This is consistent with the fact that a high percentage of people who died of opioid overdose fall in this age group.
+
+It's surprising to see that counties with higher income tend to have higher mortality rates caused by opioid overdose.
+
+<h1 id="predictions">Predictions</h1>
+
+To predict opioid overdose mortality rate, I removed county population size estimate. I also converted the `GQ Estimates 2016 (count)` variable to percentage relative to population estimate. The reason for these is because these two variables were in absolute counts. Because they were in absolute counts, these variables caused the smaller counties to have predicted opioid overdose mortality rates of zero. This caused issues because just because the county had small population size did not mean that they would necessarily have zero opioid overdose mortality rate. Removing county population size and converting `GQ Estimates 2016 (count)` to percentages relative to county population size helped solve this problem.
+
+The following is a list of all the variables used to predict county level opioid overdose mortality rate. The description of these variables can be found above.
+
+<ol>
+    <li>%_pop_chg</li>
+    <li>10_14_years_%</li>
+    <li>15_19_years_%</li>
+    <li>1_4_years_%</li>
+    <li>20_24_years_%</li>
+    <li>25_29_years_%</li>
+    <li>30_34_years_%</li>
+    <li>35_39_years_%</li>
+    <li>40_44_years_%</li>
+    <li>45_49_years_%</li>
+    <li>50_54_years_%</li>
+    <li>55_59_years_%</li>
+    <li>5_9_years_%</li>
+    <li>60_64_years_%</li>
+    <li>65_69_years_%</li>
+    <li>70_74_years_%</li>
+    <li>75_79_years_%</li>
+    <li>80_84_years_%</li>
+    <li>85+_years_%</li>
+    <li>All Other Death Rate 2016 (per 100,000)</li>
+    <li>american_indian_or_alaska_native_%</li>
+    <li>asian_or_pacific_islander_%</li>
+    <li>Birth Rate 2016 (per 100)</li>
+    <li>black_or_african_american_%</li>
+    <li>Crude Opioid Mortality Rate (per 100,000)</li>
+    <li>Domestic Migration Rate 2016 (per 100)</li>
+    <li>gq_%_of_total_pop</li>
+    <li>International Migration Rate 2016 (per 100)</li>
+    <li>less_than_1_year_%</li>
+    <li>Median Household Income 2016 (dollars)</li>
+    <li>Opioid Prescription Rate (per 100)</li>
+    <li>Percent with High School Diploma Only (%)</li>
+    <li>Poverty Percentage 2016 (%)</li>
+    <li>Unemployment Rate 2016 (per 100)</li>
+    <li>white_%</li>
+</ol>
+
+The following eighteen algorithms were used to predict the county level opioid overdose mortality rates:
+
+<ol>
+    <li> Multiple Linear Regression </li>
+    <li> Ridge Regression (Default Hyperparameters)  </li>
+    <li> Ridge Regression (Tuned Hyperparameters) </li>
+    <li> LASSO Regression (Default Hyperparameters)  </li>
+    <li> LASSO Regression (Tuned Hyperparameters)  </li>
+    <li> Elastic Net Regression (Default Hyperparameters)  </li>
+    <li> Elastic Net Regression (Tuned Hyperparameters)  </li>
+    <li> CART (Default Hyperparameters)  </li>
+    <li> CART (Tuned Hyperparameters)  </li>
+    <li> Random Forest Regression (Default Hyperparameters)  </li>
+    <li> Random Forest Regression (Tuned Hyperparameters)  </li>
+    <li> Gradient Boosting Regression (Default Hyperparameters)  </li>
+    <li> Gradient Boosting Regression (Tuned Hyperparameters)  </li>
+    <li> Stochastic Gradient Boosting (Default Hyperparameters, sklearn)  </li>
+    <li> Stochastic Gradient Boosting (Tuned Hyperparameters, sklearn)  </li>
+    <li> Stochastic Gradient Boosting (Default Hyperparameters, xgboost)  </li>
+    <li> Stochastic Gradient Boosting (Tuned Hyperparameters, xgboost)  </li>
+    <li> Hurdle Model (xgboost classification and regression)</li>
+</ol>
+
+<h2 id="hurdle_model">Hurdle Model</h2>
+
+What is the hurdle model? An article from the University of Virginia states the following:
+
+<blockquote cite="https://data.library.virginia.edu/getting-started-with-hurdle-models/">The hurdle model is a two-part model that specifies one process for zero counts and another process for positive counts. The idea is that positive counts occur once a threshold is crossed, or put another way, a hurdle is cleared. If the hurdle is not cleared, then we have a count of 0.<sup><a href="#fn2" id="ref2">2</a></sup>
+</blockquote>
+
+The procedure I used for the hurdle model is as follows:
+
+<ol>
+    <li>Use XGBoost's classifier to predict whether a county has zero opioid overdose mortality rate</li>
+    <li>For the counties that are predicted to have greater than zero opioid overdose mortality rate, use XGBoost's regressor to predict the county's opioid overdose mortality rate</li>
+</ol>
+
+This mimics section 2.6 from <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/wrcr.20308">Machine learning and hurdle models for improving regional predictions of stream water acid neutralizing capacity</a><sup><a href="#fn3" id="ref3">3</a></sup>
+
+<h2 id="prediction_procedure">Prediction Procedure</h2>
+
+For all of the algorithms, I used the same training set and test set. 80% of the data was randomly selected for the training set. The remaining 20% of the data was used for the test set.
+
+When using default hyperparameters, the following procedure was performed:
+
+<ol>
+    <li>Use default hyperparameter values to fit data (no cross-validation was used)</li>
+    <li>Calculate RMSE</li>
+</ol>
+
+When tuning for hyperparameters, the following procedure was performed:
+
+<ol>
+    <li>Tune hyperparameter values using RandomizedSearchCV (1000 iterations) and 5-fold cross-validation to fit the training set</li>
+    <li>Select model that has the lowest RMSE</li>
+</ol>
+
+Once the best models are selected, I created a bootstrap sampling distribution of the RMSE to obtain an estimate of the distribution of the RMSE and also to perform two-sample t tests to see if the differences between the models were statistically significant. The procedure for the bootstrapping is as follows:
+
+<ol>
+    <li>From the dataset, sample counties with replacement 2369 times (80% of the data) to obtain the training set</li>
+    <li>The rest of the data is the test set</li>
+    <li>Fit the training set using the best models</li>
+    <li>Make predictions for the test set</li>
+    <li>Calculate RMSE</li>
+    <li>Repeat steps one to five B = 10,000 times</li>
+</ol>
+
+You can see the bootstrap RMSE distributions for all methods below:
+
+<h2 id="bootstrap_rmse_distributions_for_all_methods">Bootstrap RMSE Distributions for All Methods</h2>
+
+<img width="650" src="images/bootstrap_hist_all_models.png" />
+
+You can see that bootstrap RMSE distributions seem to be approximately normal distributions. Hence, I use the two-sample t-test to see if the difference in the means between the model with the lowest RMSE and all other models are statistically significantly different. You can see the results of the hypothesis testing below.
+
+<h2 id="boxplot_of_bootstrap_rmse_distributions_for_all_methods">Boxplot of Bootstrap RMSE Distributions for All Methods</h2>
+
+<img width="650" src="images/boxplot_bootstrap_dist.png" />
+
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<h2 id="table_of_two_sample_t_test_p_values_between_models">Table of Two-Sample T-Test P-Values Between Models</h2>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Model 1</th>
+      <th>Model 2</th>
+      <th>p-value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Gradient Boosting Regression (Tuned Hyperparam...</td>
+      <td>9.307487e-05</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Stochastic Gradient Boosting (Tuned Hyperparam...</td>
+      <td>4.117637e-13</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Stochastic Gradient Boosting (Tuned Hyperparam...</td>
+      <td>2.063396e-89</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Stochastic Gradient Boosting (Default Hyperpar...</td>
+      <td>3.593946e-221</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Stochastic Gradient Boosting (Default Hyperpar...</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Gradient Boosting Regression (Default Hyperpar...</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>LASSO Regression (Tuned Hyperparameters)</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Elastic Net Regression (Tuned Hyperparameters)</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Ridge Regression (Default Hyperparameters)</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Ridge Regression (Tuned Hyperparameters)</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Multiple Linear Regression</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>CART (Tuned Hyperparameters)</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Random Forest Regression (Default Hyperparamet...</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Elastic Net Regression (Default Hyperparameters)</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>Hurdle Model (xgboost classification and regre...</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>LASSO Regression (Default Hyperparameters)</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Random Forest Regression (Tuned Hyperparameters)</td>
+      <td>CART (Default Hyperparameters)</td>
+      <td>0.000000e+00</td>
+    </tr>
+  </tbody>
+</table>
+
+You can see from the boxplot of all the models and the table that random forest regression with tuned hyperparameters are the best performing model. The difference between the mean of random forest and all the other models are statistically significant. CART with default parameters seems to be performing the worst. In general, tree-based methods tend to have lower RMSE than the linear models. Also, tuning hyperparameters lowers RMSE.
+
+<h2 id="predicted_vs_actual_opioid_overdose_mortality_rate">Predicted vs Actual Opioid Overdose Mortality Rate</h2>
+
+<img width="650" src="images/predicted_actual_regression_all_blog.png" />
+
+Based on the scatterplots above, we can see that the best performing model, random forest regression with tuned hyperparameters, made conservative predictions to minimize RMSE. However, in terms of using the model, I would actually prefer to use stochastic gradient boosting from XGBoost package with tuned hyperparameters. Although the difference in the means between random forest regression with tuned hyperparameters and stochastic gradient boosting from XGBoost package with tuned hyperparameters are statistically significantly different, it does not seem to be practically different. The difference in the bootstrap RMSE means  is 0.13, which is quite small in quantity (9.25 vs 9.37). In practice, this small difference would not make much difference. However, the predictions from stochastic gradient boosting from XGBoost package with tuned hyperparameters seem to fit the actual opioid overdose mortality rate better.
+
+<h2 id="feature_importances">Feature Importances</h2>
+
+<img width="650" src="images/feature_importances.png" />
+
+Based on the feature importances, we can see that some of the important features from the top-performing models are <b>asian_or_pacific\_islander\_%</b>, <b>american_indian_or_alaska\_native\_%</b>, <b>Opioid Prescription Rate (per 100)</b>, and <b>45_49\_years\_%</b>.
+
+Can we improve our predictions? Perhaps we can by taking a closer look at the county level population distribution.
+
+<h1 id="a_closer_look_at_the_county_level_population_distribution">A Closer Look at the County Level Population Distribution</h1>
+
+A closer look at the county level population distribution reveals the following:
+
+population_distribution
+
+After examining the population estimates, we see the following:
+
+<ul>
+    <li>Minimum population size for counties with greater than zero mortality rate is 18,646</li>
+    <li>1,078 counties have zero mortality rate and have population less than 18,646</li>
+    <li>1,183 counties have zero mortality rate and have population greater than or equal to 18,646</li>
+    <li>701 counties have greater than zero mortality rate and have population greater than or equal to 18,646</li>
+</ul>
+
+Based on this information, let's remove the 1,078 counties that have population less than 18,646 and redo the prediction analysis using 1,183 counties with zero opioid overdose mortality rate and 701 counties that have opioid overdose mortality rate greater than zero. In total, let's redo the analysis with 1,884 county data instead of 2,962 county data.
+
+<h2 id="boxplot_of_bootstrap_rmse_distributions_for_all_methods_population_18646">Boxplot of Bootstrap RMSE Distributions for All Methods (Population >= 18,646)</h2>
+
+<img width="650" src="images/pop_adj_boxplot_bootstrap_dist.png" />
+
+From the boxplots, we see that the best performing model is stochastic gradient boosting from sklearn package with tuned hyperparameters. The difference of the means is statistically significant between the best performing model and all the other models. However, in terms of practical significance, there seems to not be a very big difference among the top performing models.
+
+<h2 id="predicted_vs_actual_opioid_overdose_mortality_rate_population_18646">Predicted vs Actual Opioid Overdose Mortality Rate (Population >= 18,646)</h2>
+
+<img width="650" src="images/pop_adj_predicted_actual_regression_all_blog.png" />
+
+Based on the scatterplots, I would conclude that the fourth best performing model in terms of RMSE, stochastic gradient boosting from XGBoost package with tuned hyperparameters seem to make the best predictions.
+
+<h2 id="feature_importances_population_18646">Feature Importances (Population >= 18,646)</h2>
+
+<img width="650" src="images/pop_adj_feature_importances.png" />
+
+Based on the feature importances, we can see that some of the important features from the top-performing models are <b>american_indian_or_alaska\_native\_%</b>, <b>asian_or_pacific\_islander\_%</b>, <b>45_49\_years\_%</b>, and <b>Opioid Prescription Rate (per 100)</b>.
+
+Overall results after removing small counties with zero opioid overdose mortality rate does not seem to significantly improve predictions. This can be because we do not have enough data.
+
+<h1 id="conclusion_from_prediction_analysis">Conclusion from Prediction Analysis</h1>
+
+After considering the prediction analysis, I recommend XGBoost's stochastic gradient boosting model with tuned hyperparameters as the model to use to make predictions. Even though XGBoost's stochastic gradient boosting model was the fourth best performing model, the difference in the RMSE means between this model and the best performing model is not very different practically. XGBoost's stochastic gradient boosting model seems to make the best fitting predictions based on the scatterplots above. 
+
+We have now obtained a tool that we can use to predict a county's opioid overdose mortality rate given 36 variables about the county. This tool is useful for the following reasons:
+
+1. Once we predict a county's opioid overdose mortality rate, we can then focus on the counties that are predicted to have high opioid overdose mortality rate. This will help us more efficiently allocate resources to combat this epidemic.
+2. By focusing on the counties that are predicted to have high opioid overdose mortality rates, we can better investigate the cause of opioid addition. Once we find a cause, we can more effectively combat this epidemic.
+3. We can predict the change in opioid overdose mortality rate when some of the predictor variable values change.
+
+There is also one finding that is quite surprising. There is no one predictor variable that contribute overwhelmingly to opioid overdose mortality rate. Poverty rate, median household income, and unemployment rates are not the most important predictors in opioid overdose mortality rate. Instead, what we find are variables like the following:
+
+1. <b>american_indian_or_alaska\_native\_%</b>
+* <b>asian_or_pacific\_islander\_%</b>
+* <b>45_49\_years\_%</b>
+* <b>Opioid Prescription Rate (per 100)</b>
+
+<b>Opioid Prescription Rate (per 100)</b> seems to make sense in that higher <b>Opioid Prescription Rate (per 100)</b> would lead to higher opioid overdose mortality rate. However, it is surprising to see the other three predictor variables as being the top features in predicting opioid overdose mortality rate.
+
+<h1 id="further_research">Further Research</h1>
+
+Findings from this data analysis can be used to investigate some causes of opioid addiction and opioid overdose mortality rate. Further investigation should also be done to see why <b>american_indian_or_alaska\_native\_%</b>, <b>asian_or_pacific\_islander\_%</b>, and <b>45_49\_years\_%</b> play an important role in predicting opioid overdose mortality rate.
+
+<h1 id="references">References</h1>
+<p id="fn1">1. <a href="https://en.wikipedia.org/wiki/Opioid_epidemic">https://en.wikipedia.org/wiki/Opioid_epidemic</a><a href="#ref1" title="Jump back to footnote 1 in the text.">↩</a></p>
+<p id="fn2">2. <a href="https://data.library.virginia.edu/getting-started-with-hurdle-models/">https://data.library.virginia.edu/getting-started-with-hurdle-models/</a><a href="#ref2" title="Jump back to footnote 2 in the text.">↩</a></p>
+<p id="fn3">3. <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/wrcr.20308">https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/wrcr.20308</a><a href="#ref3" title="Jump back to footnote 3 in the text.">↩</a></p>
+
+<h1 id="links">Links to Code</h1>
+
+You can find code and more details regarding this data analysis from the following links:
+
+<ul>
+    <li><a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/data_wrangling.ipynb">Data Wrangling</a></li>
+    <li><a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/data_storytelling.ipynb">Data Storytelling</a></li>
+    <li><a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/exploratory_data_analysis.ipynb">Exploratory Data Analysis</a></li>
+    <li><a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/data_wrangling.ipynb">Data Wrangling</a></li>
+    <li><a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/in_depth_analysis_machine_learning.ipynb">Prediction Analysis (In-Depth Analysis, Machine Learning)</a></li>
+    <li><a href="https://github.com/danielhanbitlee/Springboard/blob/master/capstone_project/population_adjusted.ipynb">Population Adjusted Prediction Analysis (In-Depth Analysis, Machine Learning)</a></li>
+</ul>
+
+<h1 id="special_thanks">Special Thanks</h1>
+
+<ul>
+    <li>Special thanks to <a href="https://www.linkedin.com/in/tommy-blanchard-131686126/">Tommy Blanchard</a> for mentoring me throughout this project</li>
+    <li>Special thanks to <a href="https://www.linkedin.com/in/peterhbyullee/">Peter Lee</a> for helping me with the presentation slides</li>
+    <li>Special thanks to <a href="https://www.linkedin.com/in/abraham-choe-b132a424/">Abraham Choe</a> for helping me with the blog layout</li>
+</ul></div></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="Container-2">
+    <div class="Container-2-box">
+  </div>
+</div>
+</div>
+</div>
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+<p>There are <a href="https://danielhanbitlee.github.io/opioid_mortality/predicting_opioid_mortality_rate_blog.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://danielhanbitlee.github.io/opioid_mortality/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'danielhanbitlee';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>
